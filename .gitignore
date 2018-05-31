@@ -4,3 +4,4 @@ modules/
 *.log
 .idea/
 .vagrant/
+tmp/

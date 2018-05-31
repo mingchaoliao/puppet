@@ -4,7 +4,7 @@ class profile::apache::mod_php (){
 
   class { '::apache::mod::php':
     package_ensure => latest,
-    php_version    => '7.1.3',
+    php_version    => '7.1',
   }
   contain '::apache::mod::php'
 
