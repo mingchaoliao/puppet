@@ -8,4 +8,3 @@ getent passwd | while IFS=: read -r name password uid gid gecos home shell; do
   sudo usermod -aG rvm "${name}"
 done
 echo "source /etc/profile.d/rvm.sh" | sudo tee -a /etc/bash.bashrc
-gem install bundler

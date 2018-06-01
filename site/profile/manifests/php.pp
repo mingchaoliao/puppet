@@ -1,4 +1,7 @@
 class profile::php () {
+  class { '::php::globals':
+    php_version => '7.1',
+  }->
   class { '::php':
     ensure         => latest,
     package_prefix => 'php7.1-',
@@ -31,25 +34,5 @@ class profile::php () {
     }
   }
 
-  exec { 'pecl_install_oci8':
-    command => 'pecl install oci8 < data/pecl_oci8_answer.txt',
-    path => ['/usr/bin', '/bin'],
-    require => Exec['install_instantclient']
-  }
-
-  file_line { 'cli_php_ini':
-    path => '/etc/php/7.1/cli/php.ini',
-    line => 'extension=oci8.so',
-    require => Exec['pecl_install_oci8']
-  }
-
-  file_line { 'apache2_php_ini':
-    path => '/etc/php/7.1/apache2/php.ini',
-    line => 'extension=oci8.so',
-    require => Exec['pecl_install_oci8']
-  }
-
   contain '::php'
-
-
 }
