@@ -1,5 +1,6 @@
 class profile::apache () {
   class { 'apache':
+    apache_version => '2.4',
     default_vhost       => false,
     mpm_module          => 'prefork',
     default_mods        => true,

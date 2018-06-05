@@ -4,6 +4,7 @@
 
 class profile::oracle {
   contain '::profile::java'
-  contain '::profile::oracle::client'
+  # contain '::profile::oracle::client'
+  # contain '::profile::oracle::server'
   contain '::profile::oracle::instantclient'
 }

@@ -27,13 +27,15 @@ class profile::oracle::instantclient () {
   exec { 'install_instantclient':
     command => 'install_instantclient_sqlplus.sh',
     path    => ['/usr/bin', '/bin', 'scripts'],
-    require => Class['::php', '::profile::apache::mod_php']
+    require => Class['profile::apache::mod_php'],
+    onlyif => '/usr/bin/test ! -d /usr/lib/oracle'
   }
 
   exec { 'pecl_install_oci8':
     command => 'pecl install oci8 < data/pecl_oci8_answer.txt',
     path => ['/usr/bin', '/bin'],
-    require => Exec['install_instantclient']
+    require => Exec['install_instantclient'],
+    onlyif => '/usr/bin/test ! -f /usr/lib/php/20160303/oci8.so'
   }
 
   file_line { 'cli_php_ini':

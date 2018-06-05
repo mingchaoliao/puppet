@@ -1,9 +1,8 @@
 class profile::php () {
   class { '::php::globals':
     php_version => '7.1',
-  }->
-  class { '::php':
-    ensure         => latest,
+  } -> class { '::php':
+    ensure         => present,
     package_prefix => 'php7.1-',
     manage_repos   => true,
     fpm            => false,
@@ -20,17 +19,28 @@ class profile::php () {
       'PHP/upload_max_filesize' => '32M',
     },
     extensions     => {
-      pdo-dblib => {},
-      ldap      => {},
-      soap      => {},
-      xmlrpc    => {},
-      mcrypt    => {},
-      opcache   => {},
-      mbstring  => {},
-      zip       => {},
-      gd        => {},
-      yaml      => {},
-      mysql     => {}
+      ldap     => {},
+      soap     => {},
+      xmlrpc   => {},
+      mcrypt   => {},
+      mbstring => {},
+      zip      => {},
+      gd       => {},
+      yaml     => {},
+      mysql    => {
+        so_name => 'mysqli'
+      },
+      xdebug   => {
+        ensure   => installed,
+        zend => true,
+        settings => {
+          'xdebug.remote_enable'           => 1,
+          'xdebug.idekey'                  => 'phpstorm-xdebug',
+          'xdebug.profiler_enable'         => 0,
+          'xdebug.profiler_enable_trigger' => 1,
+          'xdebug.profiler_output_dir'     => '/tmp/xdebug_profiles/web'
+        }
+      }
     }
   }
 

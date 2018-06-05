@@ -13,11 +13,20 @@ class profile::oracle::client (
   $version    = '12.1.0.2',
   $file       = 'linuxamd64_12102_client',
   $log_output = true,
-){
+) {
 
   include '::profile::oracle::common'
 
-  ensure_resource('group', 'oinstall', { 'gid' => '54321' } )
+  file { '/bin/awk':
+    ensure => link,
+    target => '/usr/bin/awk'
+  }
+
+  swap_file::files { 'default':
+    ensure => present,
+  }
+
+  ensure_resource('group', 'oinstall', { 'gid' => '54321' })
   Group['oinstall'] -> Oradb::Client["${version}_Linux-x86-64"]
 
   oradb::client { "${version}_Linux-x86-64":
