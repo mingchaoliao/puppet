@@ -16,4 +16,6 @@ class profile::apache::mod_php (){
     ensure  => file,
     content => '<?php phpinfo();',
   }
+
+  contain '::profile::php::oci8'
 }

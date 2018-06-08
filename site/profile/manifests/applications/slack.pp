@@ -1,4 +1,4 @@
-class profile::slack {
+class profile::applications::slack {
 
   $packages = [
     'gconf2',

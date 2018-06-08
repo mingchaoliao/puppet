@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "learningchef/ubuntu1604-desktop"
 
   config.disksize.size = '20GB'
   # Disable automatic box update checking. If you disable this, then
@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
-    # vb.gui = true
+    vb.gui = true
 
     # Customize the amount of memory on the VM:
     vb.memory = "4096"

@@ -7,46 +7,64 @@
 # http://download.oracle.com/otn/linux/instantclient/121020/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
 #
 
-class profile::oracle::instantclient () {
+class profile::oracle::instantclient (
+  $instantclientBasicFile = "puppet:///files/instantclient-basic-linux.x64-12.2.0.1.0.zip",
+  $instantClientSdkFile = "puppet:///files/instantclient-sdk-linux.x64-12.2.0.1.0.zip",
+) {
   ensure_packages([
     'libaio1',
     'libaio-dev',
     'unzip'
   ])
 
-  file_line { 'export_oracle_home':
-    path => '/etc/bash.bashrc',
-    line => 'export ORACLE_HOME=/usr/lib/oracle/12.1/client64',
+  file {'/usr/lib/oracle':
+    ensure => directory
   }
-
-  file_line { 'export_ld_library_path':
-    path => '/etc/bash.bashrc',
-    line => 'export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib',
+  ->file {'/usr/lib/oracle/12.1':
+    ensure => directory
   }
-
-  exec { 'install_instantclient':
-    command => 'install_instantclient_sqlplus.sh',
-    path    => ['/usr/bin', '/bin', 'scripts'],
-    require => Class['profile::apache::mod_php'],
-    onlyif => '/usr/bin/test ! -d /usr/lib/oracle'
+  ->file {'/usr/lib/oracle/12.1/client64':
+    ensure => directory
   }
-
-  exec { 'pecl_install_oci8':
-    command => 'pecl install oci8 < data/pecl_oci8_answer.txt',
-    path => ['/usr/bin', '/bin'],
-    require => Exec['install_instantclient'],
-    onlyif => '/usr/bin/test ! -f /usr/lib/php/20160303/oci8.so'
+  ->archive {'/tmp/puppet/tmp/instantclient_basic.zip':
+    extract => true,
+    extract_path => '/tmp/puppet/tmp',
+    source => $instantclientBasicFile
   }
-
-  file_line { 'cli_php_ini':
-    path => '/etc/php/7.1/cli/php.ini',
-    line => 'extension=oci8.so',
-    require => Exec['pecl_install_oci8']
+  ->archive {'/tmp/puppet/tmp/instantclient_sdk.zip':
+    extract => true,
+    extract_path => '/tmp/puppet/tmp',
+    source => $instantClientSdkFile
   }
-
-  file_line { 'apache2_php_ini':
-    path => '/etc/php/7.1/apache2/php.ini',
-    line => 'extension=oci8.so',
-    require => Exec['pecl_install_oci8']
+  ->file {'/usr/lib/oracle/12.1/client64/lib':
+    ensure => directory,
+    source => '/tmp/puppet/tmp/instantclient_12_2',
+    recurse => true
+  }
+  ->file {'/tmp/puppet/tmp/instantclient_basic.zip':
+    ensure => absent
+  }
+  ->file {'/tmp/puppet/tmp/instantclient_sdk.zip':
+    ensure => absent
+  }
+  ->file {'/tmp/puppet/tmp/instantclient_12_2':
+    ensure => absent,
+    force => true
+  }
+  ->file {'/usr/lib/oracle/12.1/client64/lib/libclntsh.so':
+    ensure => link,
+    target => '/usr/lib/oracle/12.1/client64/lib/libclntsh.so.12.1'
+  }
+  ->file {'/usr/lib/oracle/12.1/client64/lib/libocci.so':
+    ensure => link,
+    target => '/usr/lib/oracle/12.1/client64/lib/libocci.so.12.1'
+  }
+  ->file {'/usr/lib/oracle/12.1/client64/lib/libclntshcore.so':
+    ensure => link,
+    target => '/usr/lib/oracle/12.1/client64/lib/libclntshcore.so.12.1'
+  }
+  ->file {'/etc/profile.d/export_oracle_home.sh':
+    ensure => file,
+    content => "export ORACLE_HOME=/usr/lib/oracle/12.1/client64\nexport LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib"
   }
 }
