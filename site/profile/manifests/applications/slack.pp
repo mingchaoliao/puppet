@@ -1,41 +1,21 @@
 class profile::applications::slack {
-
-  $packages = [
-    'gconf2',
-    'gconf-service',
-    'libnotify4',
-    'python',
-    'gvfs-bin',
-    'libgnome-keyring0',
-    'gir1.2-gnomekeyring-1.0',
+  archive {'/tmp/puppet/tmp/slack.deb':
+    source => 'https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb',
+    extract => false
+  }
+  ->package {[
     'libappindicator1',
-    'libcurl4',
-    'libsecret-1-0'
-  ];
-
-  package { $packages:
-      ensure => 'installed'
+    'libindicator7'
+  ]:
+    ensure => present
   }
-
-  exec { 'download':
-    command =>
-      "/usr/bin/wget -O /tmp/slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.0-beta25a7a50e-amd64.deb"
-    ,
-    onlyif  => 'test ! -f /tmp/slack.deb',
-    path => ['/bin', '/usr/bin']
-  }
-
-  package { 'install':
-    ensure   => installed,
-    name     => "slack.deb",
+  ->package { '/tmp/puppet/tmp/slack.deb':
+    ensure   => present,
     provider => 'dpkg',
-    source   => "/tmp/slack.deb",
+    source => '/tmp/puppet/tmp/slack.deb'
+  }
+  ->file { '/tmp/puppet/tmp/slack.deb':
+    ensure => absent
   }
 
-  file { 'cleanup':
-    ensure => absent,
-    path   => "/tmp/slack.deb",
-  }
-
-  Package[$packages] -> Exec['download'] -> Package['install'] -> File['cleanup']
 }

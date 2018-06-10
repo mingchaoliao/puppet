@@ -16,8 +16,21 @@ class profile::apache () {
     docroot       => '/var/www/localhost',
     docroot_owner => 'www-data',
     docroot_group => 'www-data',
-    # redirect_status => 'permanent',
-    # redirect_dest   => 'https://localhost/'
+    redirect_status => 'permanent',
+    redirect_dest   => 'https://localhost'
+  }
+
+  class {'::profile::apache::localhost_crt': }
+  ->apache::vhost { 'localhost ssl':
+    ip            => '127.0.0.1',
+    servername    => 'localhost',
+    port          => '443',
+    docroot       => '/var/www/localhost',
+    docroot_owner => 'www-data',
+    docroot_group => 'www-data',
+    ssl      => true,
+    ssl_cert => '/opt/ssl/localhost.crt',
+    ssl_key  => '/opt/ssl/localhost.key',
   }
 
   # apache::vhost { 'localhost ssl':

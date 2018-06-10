@@ -1,0 +1,22 @@
+HOME                    = .
+RANDFILE                = $ENV::HOME/.rnd
+
+[ req ]
+default_bits            = 2048
+default_md              = sha256
+default_keyfile         = privkey.pem
+distinguished_name      = req_distinguished_name
+prompt                  = no
+req_extensions          = req_ext
+
+[req_distinguished_name]
+countryName                     = US
+stateOrProvinceName             = OH
+localityName                    = Oxford
+organizationName                = liaom
+organizationalUnitName          = liaom
+commonName                      = liaom
+emailAddress                    = liaom@localhost
+
+[ req_ext ]
+subjectAltName = DNS:*
