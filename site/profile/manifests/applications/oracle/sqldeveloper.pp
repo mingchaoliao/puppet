@@ -6,6 +6,12 @@ class profile::applications::oracle::sqldeveloper(
     extract_path => '/opt',
     source => $file
   }
+  ->profile::applications::desktop::ubuntu::unity::launcher {'sqldeveloper':
+    displayedName => 'Sqldeveloper',
+    comment => "Oracle SQL Developer",
+    exec => "/opt/sqldeveloper/sqldeveloper.sh",
+    icon => "/opt/sqldeveloper/icon.png"
+  }
   ->file {'/tmp/puppet/tmp/sqldeveloper.zip':
     ensure => absent
   }
