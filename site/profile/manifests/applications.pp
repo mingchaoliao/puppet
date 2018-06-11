@@ -24,5 +24,5 @@ class profile::applications (
   contain '::profile::applications::jetbrains::phpstorm'
   contain '::profile::applications::jetbrains::webstorm'
   contain '::profile::applications::jetbrains::rubymine'
-
+  contain '::profile::applications::cisco::anyconnect'
 }
