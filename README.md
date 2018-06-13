@@ -1,7 +1,9 @@
 ## Puppet For Linux Dev Env
 This puppet repo is used to help me manage my several linux dev machines. 
 
-### on Ubuntu 16.04
+### Preparation
+
+#### on Ubuntu 16.04
 1. initial setting on fresh machine
 ```bash
 cd /path/to/puppet

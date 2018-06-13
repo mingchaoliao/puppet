@@ -13,8 +13,11 @@ file { '/etc/puppetlabs/puppet/fileserver.conf':
   replace => 'no'
 }
 
+contain '::profile::system'
+
 contain '::profile::apache'
 contain '::profile::apache::mod_php'
 contain '::profile::oracle'
 contain '::profile::commands'
 contain '::profile::applications'
+contain '::profile::mysql'
