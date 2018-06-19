@@ -9,6 +9,10 @@ class profile::apache () {
 
   contain '::apache', '::apache::mod::prefork', '::apache::mod::headers', '::apache::mod::ssl'
 
+  file { '/var/www':
+      mode => '0666'
+  }
+
   apache::vhost { 'localhost nonssl':
     ip            => '127.0.0.1',
     servername    => 'localhost',
@@ -16,6 +20,7 @@ class profile::apache () {
     docroot       => '/var/www/localhost',
     docroot_owner => 'www-data',
     docroot_group => 'www-data',
+    docroot_mode  => '0666',
     redirect_status => 'permanent',
     redirect_dest   => 'https://localhost'
   }
