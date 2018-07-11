@@ -35,3 +35,6 @@ cd path/to/puppet
 sudo su
 puppet apply --modulepath=site:modules site.pp
 ```
+
+### TODO:
+ - docker
