@@ -14,7 +14,7 @@ class profile::apache () {
   }
 
   apache::vhost { 'charlesliao.com nonssl':
-    ip            => '35.169.91.137',
+    ip            => '127.0.0.1',
     servername    => 'charlesliao.com',
     port          => '80',
     docroot       => '/var/www/charlesliao',
@@ -26,12 +26,14 @@ class profile::apache () {
   }
 
   apache::vhost { 'charlesliao.com ssl':
-    ip            => '35.169.91.137',
+    ip            => '127.0.0.1',
     servername    => 'charlesliao.com',
     port          => '443',
     docroot       => '/var/www/charlesliao',
     docroot_owner => 'www-data',
     docroot_group => 'www-data',
+    ssl_cert => '/etc/letsencrypt/live/charlesliao.com/fullchain.pem',
+    ssl_key  => '/etc/letsencrypt/live/charlesliao.com/privkey.pem',
     ssl      => true,
   }
 
