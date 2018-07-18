@@ -13,29 +13,26 @@ class profile::apache () {
       mode => '0666'
   }
 
-  apache::vhost { 'localhost nonssl':
-    ip            => '127.0.0.1',
-    servername    => 'localhost',
+  apache::vhost { 'charlesliao.com nonssl':
+    ip            => '35.169.91.137',
+    servername    => 'charlesliao.com',
     port          => '80',
-    docroot       => '/var/www/localhost',
+    docroot       => '/var/www/charlesliao',
     docroot_owner => 'www-data',
     docroot_group => 'www-data',
     docroot_mode  => '0666',
     redirect_status => 'permanent',
-    redirect_dest   => 'https://localhost'
+    redirect_dest   => 'https://charlesliao.com'
   }
 
-  class {'::profile::apache::localhost_crt': }
-  ->apache::vhost { 'localhost ssl':
-    ip            => '127.0.0.1',
-    servername    => 'localhost',
+  apache::vhost { 'charlesliao.com ssl':
+    ip            => '35.169.91.137',
+    servername    => 'charlesliao.com',
     port          => '443',
-    docroot       => '/var/www/localhost',
+    docroot       => '/var/www/charlesliao',
     docroot_owner => 'www-data',
     docroot_group => 'www-data',
     ssl      => true,
-    ssl_cert => '/opt/ssl/localhost.crt',
-    ssl_key  => '/opt/ssl/localhost.key',
   }
 
   # apache::vhost { 'localhost ssl':
