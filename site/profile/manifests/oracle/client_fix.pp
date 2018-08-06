@@ -1,15 +1,15 @@
-class profile::oracle::client_fix(
-  $oracle_home = "${profile::oracle::common::oracle_home_base}/client",
+class profile::oracle::client_fix (
+  $oracle_home  = "${profile::oracle::common::oracle_home_base}/client",
   $download_dir = $profile::oracle::common::download_dir,
-  $version = '12.1.0.2',
-  $exec_path = lookup('oradb::exec_path'),
-  $user = $profile::oracle::common::user,
-  $group = $profile::oracle::common::group,
-  $log_output = true,
+  $version      = '12.1.0.2',
+  $exec_path    = lookup('oradb::exec_path'),
+  $user         = $profile::oracle::common::user,
+  $group        = $profile::oracle::common::group,
+  $log_output   = true,
 ) {
-  exec {'fix_libclntshcore':
+  exec { 'fix_libclntshcore':
     command => "cp -r /usr/lib/oracle/12.1/client64/lib/* /opt/oracle/product/12.1.0/client/lib/",
-    path => ['/bin', '/usr/bin'],
+    path    => ['/bin', '/usr/bin'],
     require => Class['::profile::oracle']
   }
 

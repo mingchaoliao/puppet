@@ -1,4 +1,4 @@
-define profile::applications::jetbrains(
+define profile::applications::jetbrains (
   $applicationName = $title,
   $url,
   $extractedDirectoryName,
@@ -14,20 +14,20 @@ define profile::applications::jetbrains(
   $applicationPath = "${extractPath}/${applicationName}"
   $unityLauncherDesktopFilePath = "/usr/share/applications/${applicationName}.desktop"
 
-  archive {$archivePath:
-    source => $url,
-    extract => true,
+  archive { $archivePath:
+    source       => $url,
+    extract      => true,
     extract_path => $extractPath,
-    creates => "${applicationPath}"
+    creates      => "${applicationPath}"
   }
-  ->exec {"/bin/mv ${extractedDirectoryPath} ${applicationPath}": }
-  ->profile::applications::desktop::ubuntu::unity::launcher {$applicationName:
+  -> exec { "/bin/mv ${extractedDirectoryPath} ${applicationPath}": }
+  -> profile::applications::desktop::ubuntu::unity::launcher { $applicationName:
     displayedName => $displayedName,
-    comment => "${displayedName} Application",
-    exec => "${applicationPath}/bin/${applicationName}.sh",
-    icon => "${applicationPath}/bin/${applicationName}.png"
+    comment       => "${displayedName} Application",
+    exec          => "${applicationPath}/bin/${applicationName}.sh",
+    icon          => "${applicationPath}/bin/${applicationName}.png"
   }
-  ->file {$archivePath:
+  -> file { $archivePath:
     ensure => absent
   }
 }

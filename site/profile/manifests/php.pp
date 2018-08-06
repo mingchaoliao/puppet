@@ -1,4 +1,6 @@
-class profile::php () {
+class profile::php (
+  $phploc = true
+) {
   class { '::php::globals':
     php_version => '7.1',
   } -> class { '::php':
@@ -32,7 +34,7 @@ class profile::php () {
       },
       xdebug   => {
         ensure   => installed,
-        zend => true,
+        zend     => true,
         settings => {
           'xdebug.remote_enable'           => 1,
           'xdebug.idekey'                  => 'phpstorm-xdebug',
@@ -45,4 +47,20 @@ class profile::php () {
   }
 
   contain '::php'
+
+  file { '/usr/bin/phploc':
+    ensure  => file,
+    source  => 'https://phar.phpunit.de/phploc.phar',
+    mode    => '0755',
+    require => Class['::php']
+  }
+
+  file { '/opt/commands/xdebug':
+    ensure  => file,
+    content => file('profile/commands/xdebug.sh'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '4755',
+    require => [File['personal_commands'], Class['::php']]
+  }
 }

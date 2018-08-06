@@ -1,4 +1,4 @@
-# profile/oracle/common.pp
+# profile/oracle/cli.pp
 # Manage Oracle Common Stuff
 #
 
@@ -12,9 +12,9 @@ class profile::oracle::common (
   $ora_inventory     = pick($facts['oradb_inst_loc_data'], '/opt/oraInventory'),
   $directories       = undef,
   $pam_access_origin = 'ALL',
-){
+) {
 
-  $ora_inventory_dir = $ora_inventory.split('/')[0, -2].join('/')
+  $ora_inventory_dir = $ora_inventory.split('/')[0, - 2].join('/')
 
   $_directories = $directories ? {
     undef   => [

@@ -1,7 +1,6 @@
-class profile::apache::mod_php (){
+class profile::apache::http::mod_php () {
 
   contain '::profile::php'
-  contain '::profile::php::oci8'
 
   class { '::apache::mod::php':
     package_ensure => latest,
@@ -12,10 +11,4 @@ class profile::apache::mod_php (){
   Class['::profile::php']
   -> Class['::apache::mod::php']
   -> File[$::apache::confd_dir]
-  -> Class['::profile::php::oci8']
-
-  file { "/var/www/localhost/phpinfo.php":
-    ensure  => file,
-    content => '<?php phpinfo();',
-  }
 }

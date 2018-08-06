@@ -6,40 +6,40 @@
 #
 
 class profile::oracle::server (
-  $version             = '12.1.0.2',
-  $file                = 'linuxamd64_12102_database',
-  $memory_percentage   = 40,
-  $memory_total        = 800,
-  $db_name             = 'DEVL',
-  $db_port             = 12000,
-  $db_user             = 'baninst1',
-  $listener            = 'listener',
-  $listener_host       = '0.0.0.0',
-  $dbc_file            = undef,
-  $dbc_name            = undef,
-  $artifact_root       = 'tmp',
-){
+  $version           = '12.1.0.2',
+  $file              = 'linuxamd64_12102_database',
+  $memory_percentage = 40,
+  $memory_total      = 800,
+  $db_name           = 'DEVL',
+  $db_port           = 12000,
+  $db_user           = 'baninst1',
+  $listener          = 'listener',
+  $listener_host     = '0.0.0.0',
+  $dbc_file          = undef,
+  $dbc_name          = undef,
+  $artifact_root     = 'tmp',
+) {
 
   include '::profile::oracle::common'
 
   $artifact_root_real = $artifact_root;
 
-  $sys_password    = '1234'
+  $sys_password = '1234'
   $system_password = $sys_password
-  $db_password     = $sys_password
+  $db_password = $sys_password
 
   $download_dir = $profile::oracle::common::download_dir
-  $oracle_home  = "${profile::oracle::common::oracle_home_base}/dbhome_1"
+  $oracle_home = "${profile::oracle::common::oracle_home_base}/dbhome_1"
   $template_dir = "${oracle_home}/assistants/dbca/templates"
-  $oracle_user  = $profile::oracle::common::user
+  $oracle_user = $profile::oracle::common::user
 
   $exec_path = '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:'
 
-  package {'ksh':
+  package { 'ksh':
     ensure => 'installed'
   }
 
-  file {'/bin/awk':
+  file { '/bin/awk':
     ensure => 'link',
     target => '/usr/bin/awk'
   }
@@ -80,7 +80,8 @@ class profile::oracle::server (
   # This issue was not reproducable in all cases and this workaround should
   # be considered for removal.
   -> archive { "${download_dir}/filegroup1.jar":
-    source       => "${download_dir}/${file}/database/stage/Components/oracle.javavm.server.core/12.1.0.2.0/1/DataFiles/filegroup1.jar",
+    source       => "${download_dir}/${file}
+      /database/stage/Components/oracle.javavm.server.core/12.1.0.2.0/1/DataFiles/filegroup1.jar",
     extract      => true,
     extract_path => $download_dir,
     creates      => "${download_dir}/javavm/jdk/jdk6/lib/libjavavm12.a",
@@ -94,7 +95,8 @@ class profile::oracle::server (
   # the containing directory. The exec avoids the implicit require and allows
   # the file to placed in the expected directory.
   -> exec { 'cp libjavavm12.a':
-    command => "mkdir -p ${oracle_home}/lib && cp ${download_dir}/javavm/jdk/jdk6/lib/libjavavm12.a ${oracle_home}/lib/",
+    command => "mkdir -p ${oracle_home}/lib && cp ${download_dir}/javavm/jdk/jdk6/lib/libjavavm12.a ${oracle_home}/lib/"
+    ,
     creates => "${oracle_home}/lib/libjavavm12.a",
     path    => $exec_path,
     user    => $profile::oracle::common::user,
@@ -103,7 +105,7 @@ class profile::oracle::server (
 
   ######################################
 
-  -> oradb::installdb{ "${version}_Linux-x86-64":
+  -> oradb::installdb { "${version}_Linux-x86-64":
     version                   => $version,
     file                      => $file,
     database_type             => 'EE',
@@ -127,7 +129,7 @@ class profile::oracle::server (
   #   group        => $profile::oracle::common::group,
   # }
 
-  -> oradb::database{ 'restng':
+  -> oradb::database { 'restng':
     oracle_base               => '/opt/oracle',
     oracle_home               => $oracle_home,
     version                   => '12.1',
