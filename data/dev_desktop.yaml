@@ -6,6 +6,10 @@ git::configs:
   user.name: Mingchao Liao
   user.email: mingchaoliao95@gmail.com
 
+profile::apache::http::hosts:
+  soldel-dev-web:
+    ip: 127.0.0.1
+
 profile::apache::http::vhosts:
   soldel-dev-web nonssl:
     ip: 127.0.0.1
