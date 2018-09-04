@@ -13,3 +13,5 @@ file {'/tmp/puppet':
 if(!$::nodetype) {
   fail('fact "nodetype" not found!')
 }
+
+lookup('classes').include

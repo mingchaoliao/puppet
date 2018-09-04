@@ -2,7 +2,7 @@ class profile::php::oci8 {
   file { '/tmp/puppet/tmp/pecl_oci8_answer.txt':
     ensure  => file,
     content => 'instantclient,/usr/lib/oracle/12.1/client64/lib',
-    require => [File['/usr/lib/oracle/12.1/client64/lib'], Class['profile::php', 'profile::apache::mod_php']]
+    require => [File['/usr/lib/oracle/12.1/client64/lib'], Class['profile::php', 'profile::apache::http::mod_php']]
   }
   -> exec { 'pecl_install_oci8':
     command => 'pecl install oci8 < /tmp/pecl_oci8_answer.txt',

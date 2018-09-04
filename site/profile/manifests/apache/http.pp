@@ -50,6 +50,7 @@ class profile::apache::http (
     ssl_cert      => '/opt/ssl/self_signed.crt',
     ssl_key       => '/opt/ssl/self_signed.key',
   }
-  -> create_resources('host', $hosts)
-  -> create_resources('apache::vhost', $vhosts)
+
+  create_resources('host', $hosts)
+  create_resources('apache::vhost', $vhosts)
 }
