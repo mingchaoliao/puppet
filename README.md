@@ -33,7 +33,7 @@ mkdir -p /tmp/puppet/files
 ```bash
 cd path/to/puppet
 sudo su
-puppet apply --modulepath=site:modules site.pp
+puppet apply --hiera_config=hiera.yaml --modulepath=site:modules site.pp
 ```
 
 ### TODO:
