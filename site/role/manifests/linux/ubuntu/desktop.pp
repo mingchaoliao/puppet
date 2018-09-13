@@ -1,4 +1,4 @@
-class role::desktop {
+class role::linux::ubuntu::desktop {
   contain '::profile::applications::chrome'
   contain '::profile::applications::slack'
 

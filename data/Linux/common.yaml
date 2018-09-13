@@ -1,0 +1,44 @@
+---
+classes:
+  - role::linux::common
+
+git::configs:
+  user.name: 'Mingchao Liao'
+  user.email: 'mingchaoliao95@gmail.com'
+
+profile::user:users:
+  - username: 'liaom'
+    full_name: 'Mingchao Liao'
+    public_keys:
+      - type: ssh-rsa
+        name: 'liaom@UITLIAOMMBP.local'
+        key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCv7ABpJ2AavnQRs/u2Fponymdq5tvDAstpZT6sLb50seI9aWJ6XpIrP/2lSf3lDsyA+r/5HTBXBn9+G1VBFVoN4Kbs8j+a0q3IjO1/xNe90X8L3hoc77/rNYCO/NjcpfO38LCA57lyTRhzNM3NkIvdIXkK30Q+qjrxIDM+esNYzdMlDV32lIoVr1UosiT6s9jyzLFc0Zm1PZ3P8LO9jp6ViH0Euqsm61haXe2E40gJOxb/+nEPWdf/WeSbVqKItCxSKUGYTwUH8AamtvZ+NNA2O7FUXx6Qzcc42oQOnp/KXel+VGtpmIP3TL+uHefzP16YhNSxliEGYqbARxq1WV1R'
+    sudo: true
+
+php::globals::php_version: '7.1'
+apache::mod::php_version: '7.1'
+
+profile::apache::http::hosts:
+  soldel-dev-web:
+    ip: '127.0.0.1'
+
+profile::apache::http::vhosts:
+  soldel-dev-web nonssl:
+    ip: '127.0.0.1'
+    servername: 'soldel-dev-web'
+    port: '80'
+    docroot: '/var/www/soldel-dev-web'
+    docroot_owner: 'www-data'
+    docroot_group: 'www-data'
+    docroot_mode: '0666'
+    redirect_status: 'permanent'
+    redirect_dest: 'https://soldel-dev-web'
+  soldel-dev-web ssl:
+    ip: '127.0.0.1'
+    servername: 'soldel-dev-web'
+    port: '443'
+    docroot: '/var/www/soldel-dev-web'
+    docroot_owner: 'www-data'
+    docroot_group: 'www-data'
+    ssl_cert: '/opt/ssl/self_signed.crt'
+    ssl_key: '/opt/ssl/self_signed.key'

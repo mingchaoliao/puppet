@@ -1,6 +1,6 @@
 class profile::apache::http (
   $vhosts = {},
-  $hosts = {}
+  $hosts  = {}
 ) {
   class { 'apache':
     apache_version      => '2.4',
@@ -10,17 +10,13 @@ class profile::apache::http (
     default_confd_files => true
   }
 
-  contain '::apache', '::apache::mod::prefork', '::apache::mod::headers', '::apache::mod::ssl'
-
-  a2mod { "Enable proxy mod":
-    name   => "proxy",
-    ensure => "present"
-  }
-
-  a2mod { "Enable proxy_http mod":
-    name   => "proxy_http",
-    ensure => "present"
-  }
+  contain
+  '::apache',
+  '::apache::mod::prefork',
+  '::apache::mod::headers',
+  '::apache::mod::ssl',
+  '::apache::mod::proxy',
+  '::apache::mod::proxy_http'
 
   file { '/var/www':
     mode => '0666'

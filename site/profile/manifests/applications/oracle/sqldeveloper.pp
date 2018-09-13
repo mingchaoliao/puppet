@@ -3,16 +3,18 @@ class profile::applications::oracle::sqldeveloper (
 ) {
   archive { '/tmp/puppet/tmp/sqldeveloper.zip':
     extract      => true,
-    extract_path => '/opt',
-    source       => $file
+    extract_path => '/tmp/puppet/tmp',
+    source       => $file,
+    creates      => '/tmp/puppet/tmp/sqldeveloper'
+  }
+  -> file { '/opt/sqldeveloper':
+    recurse => true,
+    source  => '/tmp/puppet/tmp/sqldeveloper'
   }
   -> profile::applications::desktop::ubuntu::unity::launcher { 'sqldeveloper':
     displayedName => 'Sqldeveloper',
     comment       => "Oracle SQL Developer",
     exec          => "/opt/sqldeveloper/sqldeveloper.sh",
     icon          => "/opt/sqldeveloper/icon.png"
-  }
-  -> file { '/tmp/puppet/tmp/sqldeveloper.zip':
-    ensure => absent
   }
 }

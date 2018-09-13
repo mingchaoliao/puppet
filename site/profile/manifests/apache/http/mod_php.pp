@@ -2,10 +2,6 @@ class profile::apache::http::mod_php () {
 
   contain '::profile::php'
 
-  class { '::apache::mod::php':
-    package_ensure => latest,
-    php_version    => '7.1',
-  }
   contain '::apache::mod::php'
 
   Class['::profile::php']

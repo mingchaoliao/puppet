@@ -1,32 +1,8 @@
 ---
-classes:
-  - role::ubuntu_desktop
 
-git::configs:
-  user.name: Mingchao Liao
-  user.email: mingchaoliao95@gmail.com
 
-profile::apache::http::hosts:
-  soldel-dev-web:
-    ip: 127.0.0.1
 
-profile::apache::http::vhosts:
-  soldel-dev-web nonssl:
-    ip: 127.0.0.1
-    servername: soldel-dev-web
-    port: 80
-    docroot: /var/www/soldel-dev-web
-    docroot_owner: www-data
-    docroot_group: www-data
-    docroot_mode: 0666
-    redirect_status: permanent
-    redirect_dest: https://soldel-dev-web
-  soldel-dev-web ssl:
-    ip: 127.0.0.1
-    servername: soldel-dev-web
-    port: 443
-    docroot: /var/www/soldel-dev-web
-    docroot_owner: www-data
-    docroot_group: www-data
-    ssl_cert: /opt/ssl/self_signed.crt
-    ssl_key: /opt/ssl/self_signed.key
+
+
+
+

@@ -53,9 +53,8 @@ class profile::oracle::instantclient (
     ensure => link,
     target => '/usr/lib/oracle/12.1/client64/lib/libclntshcore.so.12.1'
   }
-  -> file { '/etc/profile.d/export_oracle_home.sh':
-    ensure  => file,
-    content =>
-      "export ORACLE_HOME=/usr/lib/oracle/12.1/client64\nexport LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib"
+  -> file_line { 'set ORACLE_HOME':
+    path => '/etc/environment',
+    line => 'ORACLE_HOME=/usr/lib/oracle/12.1/client64',
   }
 }

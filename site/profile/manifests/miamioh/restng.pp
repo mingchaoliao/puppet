@@ -1,5 +1,5 @@
 class profile::miamioh::restng {
-  contain profile::apache::http, profile::apache::http::mod_php, profile::php, profile::php::oci8
+  contain profile::apache::http, profile::apache::http::mod_php, profile::php
 
   apache::vhost { 'restng nonssl':
     ip              => '127.0.0.1',

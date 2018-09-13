@@ -1,4 +1,4 @@
-class role::all (
+class role::linux::common (
   $packages = [
     'cloc'
   ]
@@ -11,11 +11,11 @@ class role::all (
 
   # install command-line applications
   contain git
+  # contain profile::user
   contain profile::applications::nodejs
   contain profile::applications::angular_cli
   contain profile::applications::onepassword_cli
   contain profile::applications::cisco::anyconnect
-  contain profile::commands
   contain profile::java
   contain profile::mysql
   contain profile::mysql::phpmyadmin
@@ -23,6 +23,5 @@ class role::all (
   contain profile::apache::http
   contain profile::apache::http::mod_php
   contain profile::oracle::instantclient
-  contain profile::php::oci8
   contain profile::system::ssh
 }

@@ -10,8 +10,4 @@ file {'/tmp/puppet':
   replace => 'no'
 }
 
-if(!$::nodetype) {
-  fail('fact "nodetype" not found!')
-}
-
 lookup('classes').include
