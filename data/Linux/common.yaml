@@ -16,29 +16,30 @@ profile::user:users:
     sudo: true
 
 php::globals::php_version: '7.1'
-apache::mod::php_version: '7.1'
+apache::mod::php::php_version: '7.1'
 
 profile::apache::http::hosts:
   soldel-dev-web:
     ip: '127.0.0.1'
 
 profile::apache::http::vhosts:
-  soldel-dev-web nonssl:
-    ip: '127.0.0.1'
-    servername: 'soldel-dev-web'
-    port: '80'
-    docroot: '/var/www/soldel-dev-web'
+  localhost 9080:
+    servername: 'localhost'
+    ip: 127.0.0.1
+    port: '9080'
+    docroot: '/var/www/localhost'
     docroot_owner: 'www-data'
     docroot_group: 'www-data'
     docroot_mode: '0666'
     redirect_status: 'permanent'
-    redirect_dest: 'https://soldel-dev-web'
-  soldel-dev-web ssl:
-    ip: '127.0.0.1'
-    servername: 'soldel-dev-web'
-    port: '443'
-    docroot: '/var/www/soldel-dev-web'
+    redirect_dest: 'https://localhost:9443/'
+  localhost 9443:
+    servername: 'localhost'
+    ip: 127.0.0.1
+    port: '9443'
+    docroot: '/var/www/localhost'
     docroot_owner: 'www-data'
     docroot_group: 'www-data'
+    ssl: true
     ssl_cert: '/opt/ssl/self_signed.crt'
     ssl_key: '/opt/ssl/self_signed.key'

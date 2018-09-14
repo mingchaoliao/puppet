@@ -23,7 +23,6 @@ class profile::apache::http (
   }
 
   apache::vhost { 'localhost nonssl':
-    ip              => '127.0.0.1',
     servername      => 'localhost',
     port            => '80',
     docroot         => '/var/www/localhost',
@@ -31,12 +30,11 @@ class profile::apache::http (
     docroot_group   => 'www-data',
     docroot_mode    => '0666',
     redirect_status => 'permanent',
-    redirect_dest   => 'https://localhost'
+    redirect_dest   => 'https://localhost/'
   }
 
   class { 'profile::apache::http::self_signed_crt': }
   -> apache::vhost { 'localhost ssl':
-    ip            => '127.0.0.1',
     servername    => 'localhost',
     port          => '443',
     docroot       => '/var/www/localhost',

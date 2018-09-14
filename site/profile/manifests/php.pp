@@ -1,8 +1,9 @@
 class profile::php (
-  $phploc = true
+  $phploc = true,
+  $ensure = present
 ) {
   class { '::php':
-    ensure       => present,
+    ensure       => $ensure,
     manage_repos => true,
     fpm          => false,
     dev          => true,
@@ -18,24 +19,99 @@ class profile::php (
       'PHP/upload_max_filesize' => '32M',
     },
     extensions   => {
-      ldap     => {},
-      soap     => {},
-      xmlrpc   => {},
-      mcrypt   => {},
-      mbstring => {},
-      zip      => {},
-      gd       => {},
-      soap     => {},
-      imap     => {},
-      yaml     => {},
+      ldap     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      soap     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      xmlrpc   => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      mcrypt   => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      mbstring => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      zip      => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      gd       => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      soap     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      imap     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      yaml     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      curl     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
+      ssh2     => {
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+      },
       oci8     => {
-        provider => pecl
+        provider => pecl,
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+
       },
       mysql    => {
-        so_name => 'mysqli'
+        so_name => 'mysqli',
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
       },
       xdebug   => {
-        ensure   => installed,
+        ensure => $ensure ? {
+          absent => absent,
+          default => present
+        }
+        ,
         zend     => true,
         settings => {
           'xdebug.remote_enable'           => 1,
@@ -52,14 +128,20 @@ class profile::php (
   contain '::php'
 
   file { '/usr/local/bin/phploc':
-    ensure  => file,
+    ensure => $ensure ? {
+      absent => absent,
+      default => file
+    },
     source  => 'https://phar.phpunit.de/phploc.phar',
     mode    => '0755',
     require => Class['::php']
   }
 
   file { '/usr/local/bin/xdebug':
-    ensure  => file,
+    ensure => $ensure ? {
+      absent => absent,
+      default => file
+    },
     content => file('profile/commands/xdebug.sh'),
     owner   => 'root',
     group   => 'root',
