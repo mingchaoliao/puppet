@@ -3,18 +3,20 @@ class profile::java {
     'Debian': {
       include apt
       apt::ppa { 'ppa:webupd8team/java': }
-      ->exec {
+      -> exec {
         'set-licence-selected':
-          command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections';
+          command =>
+            '/bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections';
         'set-licence-seen':
-          command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections';
+          command => '/bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections'
+        ;
       }
-      ->package {'oracle-java8-installer':
-        ensure => present,
+      -> package { 'oracle-java8-installer':
+        ensure  => present,
         require => Class['apt::update']
       }
-      ->file {'/etc/profile.d/java_home.sh':
-        ensure => file,
+      -> file { '/etc/profile.d/java_home.sh':
+        ensure  => file,
         content => 'export JAVA_HOME=/usr/lib/jvm/java-8-oracle'
       }
     }
