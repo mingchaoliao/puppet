@@ -6,7 +6,7 @@ git::configs:
   user.name: 'Mingchao Liao'
   user.email: 'mingchaoliao95@gmail.com'
 
-profile::user:users:
+profile::user::users:
   - username: 'liaom'
     full_name: 'Mingchao Liao'
     public_keys:
