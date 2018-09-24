@@ -11,7 +11,7 @@ class role::linux::common (
 
   # install command-line applications
   contain git
-  # contain profile::user
+  contain profile::user
   contain profile::applications::nodejs
   contain profile::applications::angular_cli
   contain profile::applications::onepassword_cli
