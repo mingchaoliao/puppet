@@ -27,6 +27,7 @@ profile::apache::http::vhosts:
     servername: 'localhost'
     ip: 127.0.0.1
     port: '9080'
+    override: 'All'
     docroot: '/var/www/localhost'
     docroot_owner: 'www-data'
     docroot_group: 'www-data'
@@ -37,6 +38,7 @@ profile::apache::http::vhosts:
     servername: 'localhost'
     ip: 127.0.0.1
     port: '9443'
+    override: 'All'
     docroot: '/var/www/localhost'
     docroot_owner: 'www-data'
     docroot_group: 'www-data'
