@@ -29,6 +29,7 @@ class profile::apache::http (
     docroot_owner   => 'www-data',
     docroot_group   => 'www-data',
     docroot_mode    => '0666',
+    override        => 'All',
     redirect_status => 'permanent',
     redirect_dest   => 'https://localhost/'
   }
@@ -37,6 +38,7 @@ class profile::apache::http (
   -> apache::vhost { 'localhost ssl':
     servername    => 'localhost',
     port          => '443',
+    override      => 'All',
     docroot       => '/var/www/localhost',
     docroot_owner => 'www-data',
     docroot_group => 'www-data',
