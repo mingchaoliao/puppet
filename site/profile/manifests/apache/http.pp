@@ -17,6 +17,7 @@ class profile::apache::http (
   '::apache::mod::ssl',
   '::apache::mod::proxy',
   '::apache::mod::proxy_http'
+  '::apache::mod::rewrite'
 
   file { '/var/www':
     mode => '0666'
