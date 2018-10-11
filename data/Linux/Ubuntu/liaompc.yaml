@@ -1,0 +1,13 @@
+---
+classes:
+  - role::linux::ubuntu::desktop
+  - role::linux::miami_dev
+
+git::configs:
+  user.name: 'Mingchao Liao'
+  user.email: 'mingchaoliao95@gmail.com'
+
+# increase inotify for jetbran IDEs
+profile::system::sysctl::configs:
+  fs.inotify.max_user_watches:
+    value: 524288
