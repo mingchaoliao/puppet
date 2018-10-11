@@ -1,3 +1,22 @@
 ---
 classes:
   - role::linux::ubuntu::desktop
+
+git::configs:
+  user.name: 'Mingchao Liao'
+  user.email: 'liaom@miamioh.edu'
+
+profile::user::users:
+  - username: 'xiaw'
+    full_name: 'Weiguo Xia'
+    shell: '/bin/bash'
+    public_keys:
+      - type: ssh-rsa
+        name: 'xiaw@UITXIAWMBP.local'
+        key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDUqZ5kqdKSVtaAtRBusgfA6LEN/M837jJWfa1SdnAAcwqdIb2U6AlxgE3hd0OlRSac/Sh/HR6VLMmmr3/mSfiPVC62gzDrH4so6v078qQsoNEaL8iQ99wzTNb+NREU7rS9E13plxno37dbJEqHMjM+2Pysdz9gJjY8CVKHHgHjMAZ2o1cPL0GcmWJngZpP5VQx+5bfcFNT3r02wCqJS9e8oRlH+6SjFrowhaXFbA8GAMyKQ5u1gN2BuzJg44tmmtmDO/B/F52gQgewnHG+Qb1lZn1PKExOw4Ql38sJowAxx+71FYk9QJXnKKUA3kkXQ1cc9Y/ZShVAsuiNrtmVYCff'
+    sudo: false
+
+# increase inotify for jetbran IDEs
+profile::system::sysctl::configs:
+  fs.inotify.max_user_watches:
+    value: 524288

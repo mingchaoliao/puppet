@@ -1,12 +1,11 @@
 class profile::user (
-  $users = {}
+  $users = lookup('profile::user::users', Array[Hash], 'deep', [])
 ) {
-  # TODO: fix this
-
   $users.each |Hash $user| {
     user { $user['username']:
       ensure     => present,
       comment    => $user['full_name'],
+      shell      => $user['shell'],
       expiry     => absent,
       home       => "/home/${user['username']}",
       managehome => true

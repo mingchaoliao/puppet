@@ -9,6 +9,7 @@ git::configs:
 profile::user::users:
   - username: 'liaom'
     full_name: 'Mingchao Liao'
+    shell: '/bin/bash'
     public_keys:
       - type: ssh-rsa
         name: 'liaom@UITLIAOMMBP.local'
@@ -18,22 +19,7 @@ profile::user::users:
 php::globals::php_version: '7.1'
 apache::mod::php::php_version: '7.1'
 
-profile::apache::http::hosts:
-  soldel-dev-web:
-    ip: '127.0.0.1'
-
 profile::apache::http::vhosts:
-  localhost 9080:
-    servername: 'localhost'
-    ip: 127.0.0.1
-    port: '9080'
-    override: 'All'
-    docroot: '/var/www/localhost'
-    docroot_owner: 'www-data'
-    docroot_group: 'www-data'
-    docroot_mode: '0666'
-    redirect_status: 'permanent'
-    redirect_dest: 'https://localhost:9443/'
   localhost 9443:
     servername: 'localhost'
     ip: 127.0.0.1

@@ -24,4 +24,5 @@ class role::linux::common (
   contain profile::apache::http::mod_php
   contain profile::oracle::instantclient
   contain profile::system::ssh
+  contain profile::system::sysctl
 }
