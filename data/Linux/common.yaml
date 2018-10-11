@@ -41,3 +41,20 @@ profile::apache::http::vhosts:
     ssl: true
     ssl_cert: '/opt/ssl/self_signed.crt'
     ssl_key: '/opt/ssl/self_signed.key'
+
+profile::miamioh::ssh_alias::hosts:
+  mualband11:
+    ensure: present
+    hostname: mualband11.mcs.miamioh.edu
+  mualphpd11:
+    ensure: present
+    hostname: mualphpd11.mcs.miamioh.edu
+  mualphpd21:
+    ensure: present
+    hostname: mualphpd21.mcs.miamioh.edu
+  mualphpd22:
+    ensure: present
+    hostname: mualphpd22.mcs.miamioh.edu
+  mualphpd23:
+    ensure: present
+    hostname: mualphpd23.mcs.miamioh.edu
