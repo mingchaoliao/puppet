@@ -1,13 +1,9 @@
 class role::linux::common (
-  $packages = [
-    'cloc'
-  ]
+  $packages = lookup('role::linux::common::packages', Hash, 'deep', {})
 ) {
 
   # install packages via package manager
-  package { $packages:
-    ensure => 'installed'
-  }
+  create_resources(package, $packages)
 
   # install command-line applications
   contain git
@@ -15,7 +11,6 @@ class role::linux::common (
   contain profile::applications::nodejs
   contain profile::applications::angular_cli
   contain profile::applications::onepassword_cli
-  contain profile::applications::cisco::anyconnect
   contain profile::java
   contain profile::mysql
   contain profile::mysql::phpmyadmin
@@ -25,4 +20,5 @@ class role::linux::common (
   contain profile::oracle::instantclient
   contain profile::system::ssh
   contain profile::system::sysctl
+  contain profile::sift
 }

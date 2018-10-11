@@ -10,4 +10,4 @@ file {'/tmp/puppet':
   replace => 'no'
 }
 
-lookup('classes').include
+lookup('classes', Array[String], 'unique', []).include

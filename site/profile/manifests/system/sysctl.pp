@@ -1,5 +1,5 @@
 class profile::system::sysctl(
-  $configs = lookup('', Hash, 'deep', {})
+  $configs = lookup('profile::system::sysctl::configs', Hash, 'deep', {})
 ) {
   $sysctl = '/etc/sysctl.conf'
 

@@ -2,6 +2,16 @@
 classes:
   - role::linux::common
 
+role::linux::common::packages:
+  cloc:
+    ensure: 'present'
+  maven:
+    ensure: 'present'
+  cifs-utils:
+    ensure: 'present'
+  rpm2cpio:
+    ensure: 'present'
+
 git::configs:
   user.name: 'Mingchao Liao'
   user.email: 'mingchaoliao95@gmail.com'

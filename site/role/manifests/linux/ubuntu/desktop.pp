@@ -7,4 +7,6 @@ class role::linux::ubuntu::desktop {
   contain '::profile::applications::jetbrains::phpstorm'
   contain '::profile::applications::jetbrains::webstorm'
   contain '::profile::applications::jetbrains::rubymine'
+  contain profile::applications::jetbrains::intellij
+  contain profile::applications
 }

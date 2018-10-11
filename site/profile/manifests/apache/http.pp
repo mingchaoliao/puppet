@@ -16,7 +16,7 @@ class profile::apache::http (
   '::apache::mod::headers',
   '::apache::mod::ssl',
   '::apache::mod::proxy',
-  '::apache::mod::proxy_http'
+  '::apache::mod::proxy_http',
   '::apache::mod::rewrite'
 
   file { '/var/www':
@@ -50,4 +50,10 @@ class profile::apache::http (
 
   create_resources('host', $hosts)
   create_resources('apache::vhost', $vhosts)
+
+  file {'/var/log/apache2':
+    ensure => directory,
+    owner => 'www-data',
+    group => 'www-data'
+  }
 }

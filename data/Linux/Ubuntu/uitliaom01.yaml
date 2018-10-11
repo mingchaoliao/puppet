@@ -1,6 +1,7 @@
 ---
 classes:
   - role::linux::ubuntu::desktop
+  - role::linux::miami_dev
 
 git::configs:
   user.name: 'Mingchao Liao'
