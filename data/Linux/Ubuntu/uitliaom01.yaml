@@ -16,6 +16,14 @@ profile::user::users:
         name: 'xiaw@UITXIAWMBP.local'
         key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDUqZ5kqdKSVtaAtRBusgfA6LEN/M837jJWfa1SdnAAcwqdIb2U6AlxgE3hd0OlRSac/Sh/HR6VLMmmr3/mSfiPVC62gzDrH4so6v078qQsoNEaL8iQ99wzTNb+NREU7rS9E13plxno37dbJEqHMjM+2Pysdz9gJjY8CVKHHgHjMAZ2o1cPL0GcmWJngZpP5VQx+5bfcFNT3r02wCqJS9e8oRlH+6SjFrowhaXFbA8GAMyKQ5u1gN2BuzJg44tmmtmDO/B/F52gQgewnHG+Qb1lZn1PKExOw4Ql38sJowAxx+71FYk9QJXnKKUA3kkXQ1cc9Y/ZShVAsuiNrtmVYCff'
     sudo: false
+  - username: 'duhy'
+    full_name: 'Rose Duh'
+    shell: '/bin/bash'
+    public_keys:
+      - type: ssh-rsa
+        name: 'duhy_public_key'
+        key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdRO4BEjrLTl0EuSdju15yYALOffH++ZTMO3CIgJZAzEdiU8pG1etpdeCZvxIv/Mm1lo2eo6uiqkylNkDTVmFiHPqBqllK0EKWObPp1doqZ/6fzW9Ns79/sj2xQ4kHmssKVSgTMMgt76SCEbbgBYvsWeNE2hSwcLODYCho/F0MtsywmET8/10AR8/T0jzE/zhi8VTYsG3MeHMfOZacCsHdKwZYahhpl3LGF81aZpJt5oEKXKJXGdPBeTTeYI3/OI+uYtgFbThAQuouZbjfdd81+GHCAVXdIPuQJ4Y5IlTxhJPd+ggGY1ROmzct5bg/DRh1z7KoGpIXP6oCZ6zhd+T'
+    sudo: false
 
 # increase inotify for jetbran IDEs
 profile::system::sysctl::configs:
