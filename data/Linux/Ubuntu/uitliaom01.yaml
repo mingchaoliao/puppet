@@ -1,5 +1,6 @@
 ---
 classes:
+  - role::desktop
   - role::linux::ubuntu::desktop
   - role::linux::miami_dev
 
@@ -8,24 +9,70 @@ git::configs:
   user.email: 'liaom@miamioh.edu'
 
 profile::user::users:
-  - username: 'xiaw'
+  xiaw:
+    ensure: 'present'
     full_name: 'Weiguo Xia'
     shell: '/bin/bash'
+    sudo: false
     public_keys:
-      - type: ssh-rsa
+      - ensure: 'present'
+        type: ssh-rsa
         name: 'xiaw@UITXIAWMBP.local'
         key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDUqZ5kqdKSVtaAtRBusgfA6LEN/M837jJWfa1SdnAAcwqdIb2U6AlxgE3hd0OlRSac/Sh/HR6VLMmmr3/mSfiPVC62gzDrH4so6v078qQsoNEaL8iQ99wzTNb+NREU7rS9E13plxno37dbJEqHMjM+2Pysdz9gJjY8CVKHHgHjMAZ2o1cPL0GcmWJngZpP5VQx+5bfcFNT3r02wCqJS9e8oRlH+6SjFrowhaXFbA8GAMyKQ5u1gN2BuzJg44tmmtmDO/B/F52gQgewnHG+Qb1lZn1PKExOw4Ql38sJowAxx+71FYk9QJXnKKUA3kkXQ1cc9Y/ZShVAsuiNrtmVYCff'
-    sudo: false
-  - username: 'duhy'
+  duhy:
+    ensure: 'present'
     full_name: 'Rose Duh'
     shell: '/bin/bash'
+    sudo: false
     public_keys:
-      - type: ssh-rsa
+      - ensure: 'present'
+        type: ssh-rsa
         name: 'duhy_public_key'
         key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdRO4BEjrLTl0EuSdju15yYALOffH++ZTMO3CIgJZAzEdiU8pG1etpdeCZvxIv/Mm1lo2eo6uiqkylNkDTVmFiHPqBqllK0EKWObPp1doqZ/6fzW9Ns79/sj2xQ4kHmssKVSgTMMgt76SCEbbgBYvsWeNE2hSwcLODYCho/F0MtsywmET8/10AR8/T0jzE/zhi8VTYsG3MeHMfOZacCsHdKwZYahhpl3LGF81aZpJt5oEKXKJXGdPBeTTeYI3/OI+uYtgFbThAQuouZbjfdd81+GHCAVXdIPuQJ4Y5IlTxhJPd+ggGY1ROmzct5bg/DRh1z7KoGpIXP6oCZ6zhd+T'
-    sudo: false
 
-# increase inotify for jetbran IDEs
-profile::system::sysctl::configs:
-  fs.inotify.max_user_watches:
-    value: 524288
+profile::php::oci8: true
+profile::php::extensions:
+  oci8:
+    provider: pecl
+  xdebug:
+    zend: true
+    settings:
+      xdebug.remote_enable: 1
+      xdebug.idekey: 'phpstorm-xdebug'
+      xdebug.profiler_enable: 0
+      xdebug.profiler_enable_trigger: 1
+      xdebug.profiler_output_dir: '/tmp/xdebug_profiles/web'
+
+profile::application::packages:
+  guake:
+    ensure: present
+  thunderbird:
+    ensure: present
+  shutter:
+    ensure: present
+
+profile::apache::http::vhosts:
+  localhost_9080:
+    servername: 'localhost'
+    ip: 127.0.0.1
+    port: '9080'
+    override: 'All'
+    docroot: '/var/www/localhost'
+    docroot_owner: 'www-data'
+    docroot_group: 'www-data'
+    redirect_status: 'permanent'
+    rewrite_rule: '(.*) https://localhost:9443 [R,L]'
+    redirect_dest: 'https://localhost:9443'
+  localhost_9443:
+    servername: 'localhost'
+    ip: 127.0.0.1
+    port: '9443'
+    override: 'All'
+    docroot: '/var/www/localhost'
+    docroot_owner: 'www-data'
+    docroot_group: 'www-data'
+    rewrite_rule: '(.*) https://localhost:9443 [R,L]'
+    ssl: true
+    ssl_cert: '/opt/ssl/self_signed.crt'
+    ssl_key: '/opt/ssl/self_signed.key'
+...

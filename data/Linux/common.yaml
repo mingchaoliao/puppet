@@ -2,7 +2,7 @@
 classes:
   - role::linux::common
 
-role::linux::common::packages:
+profile::application::packages:
   cloc:
     ensure: 'present'
   maven:
@@ -12,35 +12,24 @@ role::linux::common::packages:
   rpm2cpio:
     ensure: 'present'
 
-git::configs:
-  user.name: 'Mingchao Liao'
-  user.email: 'mingchaoliao95@gmail.com'
-
 profile::user::users:
-  - username: 'liaom'
+  liaom:
+    ensure: 'present'
     full_name: 'Mingchao Liao'
     shell: '/bin/bash'
     public_keys:
-      - type: ssh-rsa
+      - ensure: 'present'
+        type: ssh-rsa
         name: 'liaom@UITLIAOMMBP.local'
         key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCv7ABpJ2AavnQRs/u2Fponymdq5tvDAstpZT6sLb50seI9aWJ6XpIrP/2lSf3lDsyA+r/5HTBXBn9+G1VBFVoN4Kbs8j+a0q3IjO1/xNe90X8L3hoc77/rNYCO/NjcpfO38LCA57lyTRhzNM3NkIvdIXkK30Q+qjrxIDM+esNYzdMlDV32lIoVr1UosiT6s9jyzLFc0Zm1PZ3P8LO9jp6ViH0Euqsm61haXe2E40gJOxb/+nEPWdf/WeSbVqKItCxSKUGYTwUH8AamtvZ+NNA2O7FUXx6Qzcc42oQOnp/KXel+VGtpmIP3TL+uHefzP16YhNSxliEGYqbARxq1WV1R'
     sudo: true
 
-php::globals::php_version: '7.1'
-apache::mod::php::php_version: '7.1'
-
-profile::apache::http::vhosts:
-  localhost 9443:
-    servername: 'localhost'
-    ip: 127.0.0.1
-    port: '9443'
-    override: 'All'
-    docroot: '/var/www/localhost'
-    docroot_owner: 'www-data'
-    docroot_group: 'www-data'
-    ssl: true
-    ssl_cert: '/opt/ssl/self_signed.crt'
-    ssl_key: '/opt/ssl/self_signed.key'
+# increase inotify for jetbran IDEs
+profile::system::sysctl::configs:
+  fs.inotify.max_user_watches:
+    ensure: 'present'
+    value: 524288
+    comment: 'increase inotify for jetbran IDEs'
 
 profile::miamioh::ssh_alias::hosts:
   mualband11:
@@ -58,3 +47,32 @@ profile::miamioh::ssh_alias::hosts:
   mualphpd23:
     ensure: present
     hostname: mualphpd23.mcs.miamioh.edu
+
+profile::applications::jetbrains::apps:
+  phpstorm:
+    url: 'https://download-cf.jetbrains.com/webide/PhpStorm-2018.3.1.tar.gz'
+    extractedDirectoryName: 'PhpStorm-183.4588.67'
+    displayedName: 'PhpStorm'
+  rubymine:
+    url: 'https://download-cf.jetbrains.com/ruby/RubyMine-2018.3.tar.gz'
+    extractedDirectoryName: 'RubyMine-2018.3'
+    displayedName: 'RubyMine'
+  webstorm:
+    url: 'https://download-cf.jetbrains.com/webstorm/WebStorm-2018.3.1.tar.gz'
+    extractedDirectoryName: 'WebStorm-183.4588.66'
+    displayedName: 'WebStorm'
+  intellij:
+    url: 'https://download-cf.jetbrains.com/idea/ideaIU-2018.3.1.tar.gz'
+    extractedDirectoryName: 'idea-IU-183.4588.61'
+    displayedName: 'IntelliJ IDEA'
+  pycharm:
+     url: 'https://download-cf.jetbrains.com/python/pycharm-professional-2018.3.1.tar.gz'
+     extractedDirectoryName: 'pycharm-2018.3.1'
+     displayedName: 'PyCharm'
+  clion:
+     url: 'https://download-cf.jetbrains.com/cpp/CLion-2018.3.1.tar.gz'
+     extractedDirectoryName: 'clion-2018.3.1'
+     displayedName: 'CLion'
+...
+
+

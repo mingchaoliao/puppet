@@ -1,9 +1,3 @@
 ---
 php::package_prefix: 'php7.1-'
-profile::application::packages:
-  guake:
-    ensure: present
-  thunderbird:
-    ensure: present
-  shutter:
-    ensure: present
+...

@@ -1,4 +1,5 @@
 define profile::applications::desktop::ubuntu::unity::launcher (
+  String $ensure              = 'present',
   String $desktopFileDirecoty = '/usr/share/applications',
   String $desktopFileName     = $title,
   String $displayedName,
@@ -8,7 +9,6 @@ define profile::applications::desktop::ubuntu::unity::launcher (
   Boolean $terminal           = false,
   String $type                = 'Application'
 ) {
-
   $desktopFile = {
     name     => $displayedName,
     comment  => $comment,
@@ -19,7 +19,10 @@ define profile::applications::desktop::ubuntu::unity::launcher (
   }
 
   file { "${desktopFileDirecoty}/${desktopFileName}.desktop":
-    ensure  => file,
+    ensure  => $ensure ? {
+      absent  => 'absent',
+      default => 'file'
+    },
     content => template('profile/applications/desktop/ubuntu/unity/desktop.erb')
   }
 }

@@ -3,6 +3,8 @@ defaults:
   datadir: data
   data_hash: yaml_data
 hierarchy:
+  - name: files
+    path: files.yaml
   - name: node specific configuration
     path: "%{facts.kernel}/%{facts.os.name}/%{facts.hostname}.yaml"
   - name: distribution specific configuration

@@ -1,20 +1,39 @@
 class profile::applications::oracle::sqldeveloper (
-  $file = 'puppet:///files/sqldeveloper-18.1.0.095.1630-no-jre.zip'
+  $ensure        = 'present',
+  $source          = 'puppet:///files/sqldeveloper-18.1.0.095.1630-no-jre.zip',
+  $extractFolder = 'sqldeveloper'
 ) {
-  archive { '/tmp/puppet/tmp/sqldeveloper.zip':
-    extract      => true,
-    extract_path => '/tmp/puppet/tmp',
-    source       => $file,
-    creates      => '/tmp/puppet/tmp/sqldeveloper'
-  }
-  -> file { '/opt/sqldeveloper':
-    recurse => true,
-    source  => '/tmp/puppet/tmp/sqldeveloper'
-  }
-  -> profile::applications::desktop::ubuntu::unity::launcher { 'sqldeveloper':
-    displayedName => 'Sqldeveloper',
-    comment       => "Oracle SQL Developer",
-    exec          => "/opt/sqldeveloper/sqldeveloper.sh",
-    icon          => "/opt/sqldeveloper/icon.png"
+  if $ensure == 'present' {
+    archive { '/tmp/puppet/sqldeveloper.zip':
+      extract      => true,
+      extract_path => "/opt",
+      source       => $source,
+      creates      => "/opt/$extractFolder/sqldeveloper.sh"
+    }
+    -> file { "/opt/$extractFolder/sqldeveloper.sh":
+      ensure => 'file',
+      mode    => '0755'
+    }
+    -> profile::applications::desktop::ubuntu::unity::launcher { 'sqldeveloper':
+      displayedName => 'Sqldeveloper',
+      comment       => "Oracle SQL Developer",
+      exec          => "/opt/sqldeveloper/sqldeveloper.sh",
+      icon          => "/opt/sqldeveloper/icon.png"
+    }
+  } elsif $ensure == 'absent' {
+    file { "/opt/$extractFolder":
+      ensure  => 'absent',
+      recurse => true
+    }
+
+    profile::applications::desktop::ubuntu::unity::launcher { 'sqldeveloper':
+      ensure        => 'absent',
+      displayedName => 'Sqldeveloper',
+      comment       => "Oracle SQL Developer",
+      exec          => "/opt/sqldeveloper/sqldeveloper.sh",
+      icon          => "/opt/sqldeveloper/icon.png"
+    }
+  } else {
+    fail("Unsupported ensure value: $ensure")
   }
 }

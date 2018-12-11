@@ -1,0 +1,51 @@
+---
+profile::mysql::phpmyadmin::source: 'puppet:///files/phpMyAdmin-4.8.4-all-languages.zip'
+profile::mysql::phpmyadmin::extractFolder: 'phpMyAdmin-4.8.4-all-languages'
+
+profile::applications::slack::source: 'puppet:///files/slack-desktop-3.3.3-amd64.deb'
+
+profile::applications::onepassword_cli::source: 'puppet:///files/op_linux_amd64_v0.5.4.zip'
+
+profile::applications::cisco::anyconnect::source: 'puppet:///files/anyconnect-linux64-4.6.02074-predeploy-k9.tar.gz'
+profile::applications::cisco::anyconnect::extractFolder: 'anyconnect-linux64-4.6.02074'
+
+profile::sift::source: 'puppet:///files/sift_0.9.0_linux_amd64.tar.gz'
+profile::sift::extractFolder: 'sift_0.9.0_linux_amd64'
+
+profile::php::phploc::source: 'puppet:///files/phploc-4.0.1.phar'
+
+profile::applications::oracle::sqldeveloper::source: 'puppet:///files/sqldeveloper-18.1.0.095.1630-no-jre.zip'
+profile::applications::oracle::sqldeveloper::extractFolder: 'sqldeveloper'
+
+profile::oracle::instantclient::instantClientBasicFile: 'puppet:///files/instantclient-basic-linux.x64-18.3.0.0.0dbru.zip'
+profile::oracle::instantclient::instantClientSdkFile: 'puppet:///files/instantclient-sdk-linux.x64-18.3.0.0.0dbru.zip'
+profile::oracle::instantclient::extractFolderName: 'instantclient_18_3'
+profile::oracle::instantclient::version: '18.3'
+profile::oracle::instantclient::sharedLibVersion: '18.1'
+
+profile::applications::jetbrains::apps:
+  phpstorm:
+    url: 'puppet:///files/PhpStorm-2018.3.1.tar.gz'
+    extractedDirectoryName: 'PhpStorm-183.4588.67'
+    displayedName: 'PhpStorm'
+  rubymine:
+    url: 'puppet:///files/RubyMine-2018.3.tar.gz'
+    extractedDirectoryName: 'RubyMine-2018.3'
+    displayedName: 'RubyMine'
+  webstorm:
+    url: 'puppet:///files/WebStorm-2018.3.1.tar.gz'
+    extractedDirectoryName: 'WebStorm-183.4588.66'
+    displayedName: 'WebStorm'
+  intellij:
+    url: 'puppet:///files/ideaIU-2018.3.1.tar.gz'
+    extractedDirectoryName: 'idea-IU-183.4588.61'
+    displayedName: 'IntelliJ IDEA'
+  pycharm:
+     url: 'puppet:///files/pycharm-professional-2018.3.1.tar.gz'
+     extractedDirectoryName: 'pycharm-2018.3.1'
+     displayedName: 'PyCharm'
+  clion:
+     url: 'puppet:///files/CLion-2018.3.1.tar.gz'
+     extractedDirectoryName: 'clion-2018.3.1'
+     displayedName: 'CLion'
+...
