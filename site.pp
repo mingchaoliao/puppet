@@ -1,7 +1,4 @@
 file {'/tmp/puppet':
-  ensure => 'absent'
-}
-->file {'/tmp/puppet':
   ensure => 'directory'
 }
 ->file {'/opt/puppet':

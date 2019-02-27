@@ -47,9 +47,6 @@ sudo -i gpg2 --keyserver hkp://keys.gnupg.net \
   && sudo usermod -aG rvm root \
   && sudo -i rvm install 2.5.1 \
   && sudo -i rvm --default use 2.5.1 \
-  && sudo -i gem install bundler \
-  && sudo -i bash -c "cd ${DIR}/.. && bundle install" \
-  && sudo -i bash -c "cd ${DIR}/.. && librarian-puppet install --verbose"
 
 sudo rm -rf /opt/puppet/files
 sudo mkdir -p /opt/puppet

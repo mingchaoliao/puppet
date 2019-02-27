@@ -8,7 +8,7 @@ git::configs:
   user.name: 'Mingchao Liao'
   user.email: 'liaom@miamioh.edu'
 
-profile::user::users:
+profile::user::merged_users:
   xiaw:
     ensure: 'present'
     full_name: 'Weiguo Xia'

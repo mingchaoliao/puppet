@@ -1,5 +1,5 @@
 class profile::user (
-  $users = lookup('profile::user::users', Hash, 'deep', [])
+  $users = lookup('profile::user::merged_users', Hash, 'deep', [])
 ) {
   $users.each |String $username, Hash $user| {
     user { $username:

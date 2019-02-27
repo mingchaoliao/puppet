@@ -12,7 +12,11 @@ profile::application::packages:
   rpm2cpio:
     ensure: 'present'
 
-profile::user::users:
+profile::docker::docker_compose_version: '1.23.2'
+profile::docker::merged_users:
+  - 'liaom'
+
+profile::user::merged_users:
   liaom:
     ensure: 'present'
     full_name: 'Mingchao Liao'
