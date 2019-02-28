@@ -3,4 +3,5 @@ class role::linux::common {
   contain profile::system::sysctl
   contain profile::sift
   contain profile::docker
+  contain profile::baidupcs
 }

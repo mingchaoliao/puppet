@@ -2,7 +2,7 @@ class role::web {
   contain profile::applications::nodejs
   contain profile::applications::angular_cli
   contain profile::java
-  #contain profile::oracle::instantclient
+  contain profile::oracle::instantclient
   #contain profile::php
   #contain profile::php::phploc
   #contain profile::php::xdebug_manager

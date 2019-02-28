@@ -11,6 +11,16 @@ profile::application::packages:
     ensure: 'present'
   rpm2cpio:
     ensure: 'present'
+  ldap-utils:
+    ensure: present
+  ffmpeg:
+    ensure: present
+  zerofree:
+    ensure: present
+  gparted:
+    ensure: present
+  screen:
+    ensure: present
 
 profile::docker::docker_compose_version: '1.23.2'
 profile::docker::merged_users:
