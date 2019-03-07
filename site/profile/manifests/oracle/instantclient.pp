@@ -1,15 +1,9 @@
-# oracle/instantclient.pp
-# Manage installation of the Oracle instant client
-#
-# http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
-# http://download.oracle.com/otn/linux/instantclient/121020/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
-# http://download.oracle.com/otn/linux/instantclient/121020/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
-# http://download.oracle.com/otn/linux/instantclient/121020/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
-#
-
 class profile::oracle::instantclient (
-  $instantclientBasicFile = "puppet:///files/instantclient-basic-linux.x64-12.2.0.1.0.zip",
-  $instantClientSdkFile   = "puppet:///files/instantclient-sdk-linux.x64-12.2.0.1.0.zip",
+  $version                    = '18.3',
+  $sharedLibVersion           = '18.1',
+  $extractFolderName          = 'instantclient_18_3',
+  $instantClientBasicFile     = "puppet:///files/instantclient-basic-linux.x64-18.3.0.0.0dbru.zip",
+  $instantClientSdkFile       = "puppet:///files/instantclient-sdk-linux.x64-18.3.0.0.0dbru.zip",
 ) {
   ensure_packages([
     'libaio1',
@@ -19,42 +13,38 @@ class profile::oracle::instantclient (
 
   file { [
     '/usr/lib/oracle',
-    '/usr/lib/oracle/12.1',
-    '/usr/lib/oracle/12.1/client64'
+    "/usr/lib/oracle/$version",
+    "/usr/lib/oracle/$version/client64"
   ]:
     ensure => directory,
   }
-  -> archive { '/tmp/puppet/tmp/instantclient_basic.zip':
+  -> archive { "/tmp/puppet/instantclient-basic.zip":
     extract      => true,
-    extract_path => '/tmp/puppet/tmp',
-    source       => $instantclientBasicFile,
-    creates      => '/tmp/puppet/tmp/instantclient_12_2/libclntshcore.so.12.1'
+    extract_path => '/tmp/puppet',
+    source       => $instantClientBasicFile,
+    creates      => "/tmp/puppet/$extractFolderName"
   }
-  -> archive { '/tmp/puppet/tmp/instantclient_sdk.zip':
+  -> archive { "/tmp/puppet/instantclient-sdk.zip":
     extract      => true,
-    extract_path => '/tmp/puppet/tmp',
+    extract_path => '/tmp/puppet',
     source       => $instantClientSdkFile,
-    creates      => '/tmp/puppet/tmp/instantclient_12_2/sdk'
+    creates      => "/tmp/puppet/$extractFolderName/sdk"
   }
-  -> file { '/usr/lib/oracle/12.1/client64/lib':
+  -> file { "/usr/lib/oracle/$version/client64/lib":
     ensure  => directory,
-    source  => '/tmp/puppet/tmp/instantclient_12_2',
+    source  => "/tmp/puppet/$extractFolderName",
     recurse => true
   }
-  -> file { '/usr/lib/oracle/12.1/client64/lib/libclntsh.so':
+  -> file { "/usr/lib/oracle/$version/client64/lib/libclntsh.so":
     ensure => link,
-    target => '/usr/lib/oracle/12.1/client64/lib/libclntsh.so.12.1'
+    target => "/usr/lib/oracle/$version/client64/lib/libclntsh.so.$sharedLibVersion"
   }
-  -> file { '/usr/lib/oracle/12.1/client64/lib/libocci.so':
+  -> file { "/usr/lib/oracle/$version/client64/lib/libocci.so":
     ensure => link,
-    target => '/usr/lib/oracle/12.1/client64/lib/libocci.so.12.1'
+    target => "/usr/lib/oracle/$version/client64/lib/libocci.so.$sharedLibVersion"
   }
-  -> file { '/usr/lib/oracle/12.1/client64/lib/libclntshcore.so':
-    ensure => link,
-    target => '/usr/lib/oracle/12.1/client64/lib/libclntshcore.so.12.1'
-  }
-  -> file_line { 'set ORACLE_HOME':
-    path => '/etc/environment',
-    line => 'ORACLE_HOME=/usr/lib/oracle/12.1/client64',
+  -> file { '/etc/profile.d/set_oracle_home.sh':
+    mode    => '0755',
+    content => "export ORACLE_HOME=/usr/lib/oracle/$version/client64",
   }
 }

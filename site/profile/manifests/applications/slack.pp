@@ -1,16 +1,20 @@
-class profile::applications::slack {
-  file { '/tmp/puppet/tmp/slack.deb':
-    source  => 'https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb',
-    ensure  => present,
-    replace => false
+class profile::applications::slack (
+  String $ensure = 'present',
+  String $source = 'https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.3-amd64.deb'
+) {
+  package { ['libappindicator1', 'libindicator7']:
+    ensure => $ensure
   }
 
-  package { ['libappindicator1', 'libindicator7']: }
+  file { '/tmp/puppet/slack.deb':
+    ensure => $ensure,
+    source => $source
+  }
 
-  package { '/tmp/puppet/tmp/slack.deb':
-    ensure   => present,
+  package { 'install_slack':
+    ensure   => $ensure,
     provider => 'dpkg',
-    source   => '/tmp/puppet/tmp/slack.deb',
-    require  => [File['/tmp/puppet/tmp/slack.deb'], Package['libappindicator1', 'libindicator7']]
+    source   => '/tmp/puppet/slack.deb',
+    require  => [Package['libappindicator1', 'libindicator7'], File['/tmp/puppet/slack.deb']]
   }
 }

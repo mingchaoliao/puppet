@@ -13,8 +13,8 @@ class profile::miamioh::tns {
     ensure => file,
     content => file('profile/miamioh/tns/sqlnet.ora')
   }
-  -> file_line { 'set TNS_ADMIN':
-    path => '/etc/environment',
-    line => 'TNS_ADMIN=/etc/oracle/tns_admin',
+  ->file {'/etc/profile.d/set_tns_admin.sh':
+    mode => '0755',
+    content => 'export TNS_ADMIN=/etc/oracle/tns_admin'
   }
 }

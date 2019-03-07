@@ -1,0 +1,28 @@
+---
+classes:
+  - role::common
+
+git::configs:
+  user.name: 'Mingchao Liao'
+  user.email: 'mingchaoliao95@gmail.com'
+
+profile::php::extensions:
+  ldap: {}
+  soap: {}
+  xmlrpc: {}
+  mcrypt: {}
+  mbstring: {}
+  zip: {}
+  gd: {}
+  soap: {}
+  imap: {}
+  yaml: {}
+  curl: {}
+  ssh2: {}
+  mysql: {}
+  mssql: {}
+  opcache: {}
+
+php::globals::php_version: '7.1'
+apache::mod::php::php_version: '7.1'
+...

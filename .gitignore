@@ -5,3 +5,4 @@ modules/
 .idea/
 .vagrant/
 tmp/
+data/files.yaml
