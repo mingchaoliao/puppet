@@ -5,4 +5,5 @@ class role::desktop {
   contain profile::applications::oracle::virtualbox
   contain profile::applications::oracle::sqldeveloper
   contain profile::applications::jetbrains
+  contain profile::applications::postman
 }
