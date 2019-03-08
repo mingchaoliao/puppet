@@ -1,5 +1,5 @@
 class profile::applications(
-  $packages = lookup('profile::application::packages', Hash, 'deep', {})
+  $packages = lookup('profile::application::merged_packages', Hash, 'deep', {})
 ) {
   create_resources(package, $packages)
 }

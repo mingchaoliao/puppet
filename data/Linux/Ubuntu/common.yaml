@@ -1,3 +1,7 @@
 ---
 php::package_prefix: 'php7.1-'
+
+profile::application::merged_packages:
+  software-properties-common:
+    ensure: 'present'
 ...

@@ -2,7 +2,7 @@
 classes:
   - role::linux::common
 
-profile::application::packages:
+profile::application::merged_packages:
   cloc:
     ensure: 'present'
   maven:

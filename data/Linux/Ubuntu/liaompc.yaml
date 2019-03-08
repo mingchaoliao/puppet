@@ -17,7 +17,7 @@ profile::php::extensions:
       xdebug.profiler_enable_trigger: 1
       xdebug.profiler_output_dir: '/tmp/xdebug_profiles/web'
 
-profile::application::packages:
+profile::application::merged_packages:
   guake:
     ensure: present
   thunderbird:
