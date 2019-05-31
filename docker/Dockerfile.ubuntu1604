@@ -1,0 +1,14 @@
+FROM ubuntu:16.04
+
+COPY . puppet
+WORKDIR puppet
+
+ENV HOST ubutnu1604
+
+RUN apt-get update && apt-get install sudo gnupg2
+
+#RUN apt-get install -y --no-install-recommends ubuntu-desktop
+
+RUN ./scripts/init.sh ${host}
+
+CMD ['puppet', 'apply', '--hiera_config=hiera.yaml', '--modulepath=site:modules', 'site.pp']

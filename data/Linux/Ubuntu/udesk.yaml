@@ -1,0 +1,10 @@
+---
+classes:
+  - role::linux:ubuntu:udesk
+
+profile::application::merged_packages:
+  guake:
+    ensure: present
+  shutter:
+    ensure: present
+...
