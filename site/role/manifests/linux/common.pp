@@ -4,4 +4,5 @@ class role::linux::common {
   contain profile::sift
   contain profile::docker
   contain profile::baidupcs
+  contain profile::golang
 }
