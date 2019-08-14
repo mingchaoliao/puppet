@@ -41,11 +41,15 @@ profile::applications::jetbrains::apps:
     extractedDirectoryName: 'idea-IU-183.4588.61'
     displayedName: 'IntelliJ IDEA'
   pycharm:
-     url: 'puppet:///files/pycharm-professional-2018.3.1.tar.gz'
-     extractedDirectoryName: 'pycharm-2018.3.1'
-     displayedName: 'PyCharm'
+    url: 'puppet:///files/pycharm-professional-2018.3.1.tar.gz'
+    extractedDirectoryName: 'pycharm-2018.3.1'
+    displayedName: 'PyCharm'
   clion:
-     url: 'puppet:///files/CLion-2018.3.1.tar.gz'
-     extractedDirectoryName: 'clion-2018.3.1'
-     displayedName: 'CLion'
+    url: 'puppet:///files/CLion-2018.3.1.tar.gz'
+    extractedDirectoryName: 'clion-2018.3.1'
+    displayedName: 'CLion'
+  goland:
+    url: 'puppet:///files/goland-2019.2.tar.gz'
+    extractedDirectoryName: 'GoLand-2019.2'
+    displayedName: 'GoLand'
 ...
