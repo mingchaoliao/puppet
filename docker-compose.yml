@@ -1,0 +1,9 @@
+version: '3.2'
+
+services:
+  udesk:
+    build:
+      dockerfile: docker/Dockerfile.ubuntu1604
+      context: .
+    environment:
+      HOST: udesk
