@@ -21,6 +21,8 @@ profile::application::merged_packages:
     ensure: present
   screen:
     ensure: present
+  iotop:
+    ensure: present
 
 profile::docker::docker_compose_version: '1.23.2'
 profile::docker::merged_users:
