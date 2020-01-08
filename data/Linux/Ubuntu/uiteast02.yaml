@@ -1,0 +1,30 @@
+---
+classes:
+  - role::linux::miami_dev
+
+git::configs:
+  user.name: 'Mingchao Liao'
+  user.email: 'liaom@miamioh.edu'
+
+profile::user::merged_users:
+  duhy:
+    ensure: 'present'
+    full_name: 'Rose Duh'
+    shell: '/bin/bash'
+    sudo: true
+    public_keys:
+      - ensure: 'present'
+        type: ssh-rsa
+        name: 'duhy_public_key'
+        key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdRO4BEjrLTl0EuSdju15yYALOffH++ZTMO3CIgJZAzEdiU8pG1etpdeCZvxIv/Mm1lo2eo6uiqkylNkDTVmFiHPqBqllK0EKWObPp1doqZ/6fzW9Ns79/sj2xQ4kHmssKVSgTMMgt76SCEbbgBYvsWeNE2hSwcLODYCho/F0MtsywmET8/10AR8/T0jzE/zhi8VTYsG3MeHMfOZacCsHdKwZYahhpl3LGF81aZpJt5oEKXKJXGdPBeTTeYI3/OI+uYtgFbThAQuouZbjfdd81+GHCAVXdIPuQJ4Y5IlTxhJPd+ggGY1ROmzct5bg/DRh1z7KoGpIXP6oCZ6zhd+T'
+  katukuar:
+    ensure: 'present'
+    full_name: 'Aashrith Katukuar'
+    shell: '/bin/bash'
+    sudo: true
+    public_keys:
+      - ensure: 'present'
+        type: ssh-rsa
+        name: 'katukuar_public_key'
+        key: 'AAAAB3NzaC1yc2EAAAADAQABAAACAQCgVtD4ztnJj0l/oTttMaX7/y4bBMyUOsh+ZUBlQ8IqI9AitZOjwaYKL8MSYqbUGEfAc72cHPhLwNgsnFr4vT8eG46zGCWSJo+KOo/CF46Vizz1D0+tccdARixLKDG/1dUWI6BCgdxlMt2c9iOo0+739Z5bxZEDgOWtU7G7hLm/ejA3R/DAyrdNOv53e1Wl5r7lOg7hkqt0LDhQsP0ozAhkwtI/2RFxAfLwB6zRN3PWeEiju763kYjXroc6dHi/UB89FJ5R03dJjRNT98gY3l89//r8JfP8YBxoAwR+jGV1p7SF02S4K+k/5XR0z2XJj7DYTmYSdMjZBqLuVskIH4Cmd7bWJMylJe/MPw3VRoxzsirOwt1VowULBG+Hon9xgdBO9mugjFJTMHpu68kQ+thET2tfiO9Nc6f3dmxIhuQ58YW9jFS/rx6nBaneyxVeLI6HHjpwbKXHnGldbAdfZ2auvggocinQabKfSi3fFo3V13Jyb9f6lan3OU2CwTdQ6ye3oBNLwRcqZt+zzjUmfP+TxpV1xCq7WLzCWkf9ZQiVa1VtD9P6XyPuxpIxMuXaU/HLZ/Cs1wYQE72K1pT4klokIvFPrRfiy5nyVBFEvMAVIaxYYZSF5NPi4878NQmhWBExhE838YpB4HAFpi7BZhsfvYXFrGrW9L19xwLRK8eU6w=='
+...
