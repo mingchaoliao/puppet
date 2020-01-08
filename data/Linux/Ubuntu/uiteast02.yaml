@@ -19,7 +19,7 @@ profile::user::merged_users:
         key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdRO4BEjrLTl0EuSdju15yYALOffH++ZTMO3CIgJZAzEdiU8pG1etpdeCZvxIv/Mm1lo2eo6uiqkylNkDTVmFiHPqBqllK0EKWObPp1doqZ/6fzW9Ns79/sj2xQ4kHmssKVSgTMMgt76SCEbbgBYvsWeNE2hSwcLODYCho/F0MtsywmET8/10AR8/T0jzE/zhi8VTYsG3MeHMfOZacCsHdKwZYahhpl3LGF81aZpJt5oEKXKJXGdPBeTTeYI3/OI+uYtgFbThAQuouZbjfdd81+GHCAVXdIPuQJ4Y5IlTxhJPd+ggGY1ROmzct5bg/DRh1z7KoGpIXP6oCZ6zhd+T'
   katukuar:
     ensure: 'present'
-    full_name: 'Aashrith Katukuar'
+    full_name: 'Aashrith Katukuri'
     shell: '/bin/bash'
     sudo: true
     public_keys:
