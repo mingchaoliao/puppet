@@ -6,6 +6,10 @@ git::configs:
   user.name: 'Mingchao Liao'
   user.email: 'liaom@miamioh.edu'
 
+profile::docker::merged_users:
+  - 'katukuar'
+  - 'duhy'
+
 profile::user::merged_users:
   duhy:
     ensure: 'present'
