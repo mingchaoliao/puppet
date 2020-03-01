@@ -1,7 +1,17 @@
 #!/bin/bash
 
+# the script must be run as root only
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
+# get absolute path of the directory which this file stays
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
+#
+# get OS information
+#
 if [[ -f /etc/os-release ]]; then
     # freedesktop.org and systemd
     . /etc/os-release
@@ -32,22 +42,64 @@ else
     VER=$(uname -r)
 fi
 
-if [[ "$OS" = "Ubuntu" ]]; then
-    ${DIR}/linux/ubuntu_setup.sh
-else
-    echo "Unsupported OS type: ${OS}"
+#
+# Parse command line arguments and options
+#
+for i in "$@"
+do
+case $i in
+    --hostname=*)
+    SET_HOSTNAME="${i#*=}"
+    shift
+    ;;
+    --skip-set-hostname)
+    SKIP_HOST_NAME=true
+    shift
+    ;;
+    *)
+        echo "Unknown parameter ${i}"
+        exit 1
+    ;;
+esac
+done
+
+# hostname provided from the command line argument is required
+if [[ ! ${SKIP_HOST_NAME} && ! ${SET_HOSTNAME} ]]; then
+    echo 'Missing options --hostname=<hostname>. Apply option --skip-set-hostname, if the hostname is already set.'
+    exit 1;
 fi
 
-${DIR}/linux/set_hostname.sh $1
+# check if the current OS is supported
+if [[ "$OS" = "Ubuntu" ]]; then
+    if [[ ! $(bash -l -c "command -v ruby") ]]; then
+        ${DIR}/linux/ubuntu_setup.sh
+    fi
+else
+    echo "Unsupported OS type: ${OS}"
+    exit 1
+fi
 
-sudo -i gpg2 --keyserver hkp://keys.gnupg.net \
-    --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
-  && sudo apt -y install curl \
-  && \curl -sSL https://get.rvm.io | sudo -i bash -s stable \
-  && sudo usermod -aG rvm root \
-  && sudo -i rvm install 2.5.1 \
-  && sudo -i rvm --default use 2.5.1 \
+if [[ ! ${SKIP_HOST_NAME} ]]; then
+    ${DIR}/linux/set_hostname.sh ${SET_HOSTNAME}
+fi
 
-sudo rm -rf /opt/puppet/files
-sudo mkdir -p /opt/puppet
-sudo ln -s "${DIR}/../tmp" /opt/puppet/files
+if [[ ! $(bash -l -c "command -v ruby") ]]; then
+    gpg2 --keyserver hkp://keys.gnupg.net \
+        --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
+      && curl -sSL https://get.rvm.io | bash -s stable \
+      && usermod -aG rvm root \
+      && bash -l -c "rvm install 2.5.1" \
+      && bash -l -c "rvm --default use 2.5.1"
+fi
+
+if [[ ! $(bash -l -c "command -v librarian-puppet") ]]; then
+    bash -l -c "gem install bundler && bundle install"
+fi
+
+if [[ ! $(bash -l -c "command -v puppet") ]]; then
+    bash -l -c "librarian-puppet install"
+fi
+
+rm -rf /opt/puppet/files \
+  && mkdir -p /opt/puppet "${DIR}/../tmp" \
+  && ln -s "${DIR}/../tmp" /opt/puppet/files

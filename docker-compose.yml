@@ -2,8 +2,8 @@ version: '3.2'
 
 services:
   udesk:
-    build:
-      dockerfile: docker/Dockerfile.ubuntu1604
-      context: .
-    environment:
-      HOST: udesk
+    image: ubuntu:16.04
+    hostname: udesk
+    working_dir: /puppet
+    volumes:
+      - .:/puppet
