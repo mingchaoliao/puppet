@@ -5,5 +5,12 @@ services:
     image: ubuntu:16.04
     hostname: udesk
     working_dir: /puppet
+    command: /sbin/init
+    cap_add:
+      - CAP_SYS_ADMIN
+    tmpfs:
+      - /tmp
+      - /run
     volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - .:/puppet

@@ -2,6 +2,8 @@
 classes:
   - role::linux::common
 
+profile::baidupcs::ensure: 'absent'
+
 profile::application::merged_packages:
   cloc:
     ensure: 'present'
