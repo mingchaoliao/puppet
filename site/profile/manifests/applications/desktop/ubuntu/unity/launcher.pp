@@ -2,10 +2,10 @@ define profile::applications::desktop::ubuntu::unity::launcher (
   String $ensure              = 'present',
   String $desktopFileDirecoty = '/usr/share/applications',
   String $desktopFileName     = $title,
-  String $displayedName,
+  String $displayedName       = '',
   String $comment             = 'no comment',
-  String $exec,
-  String $icon,
+  String $exec                = '',
+  String $icon                = '',
   Boolean $terminal           = false,
   String $type                = 'Application'
 ) {

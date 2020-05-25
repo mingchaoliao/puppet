@@ -5,4 +5,5 @@ class role::linux::common {
   contain profile::docker
   contain profile::baidupcs
   contain profile::golang
+  contain profile::thefuck
 }

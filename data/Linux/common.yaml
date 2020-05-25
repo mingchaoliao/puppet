@@ -25,6 +25,10 @@ profile::application::merged_packages:
     ensure: present
   iotop:
     ensure: present
+  iftop:
+    ensure: present
+  resolvconf:
+    ensure: present
 
 profile::docker::docker_compose_version: '1.23.2'
 profile::docker::merged_users:
@@ -68,29 +72,41 @@ profile::miamioh::ssh_alias::hosts:
 
 profile::applications::jetbrains::apps:
   phpstorm:
+    ensure: latest
+    package: phpstorm
     url: 'https://download-cf.jetbrains.com/webide/PhpStorm-2018.3.1.tar.gz'
     extractedDirectoryName: 'PhpStorm-183.4588.67'
     displayedName: 'PhpStorm'
   rubymine:
+    ensure: latest
+    package: rubymine
     url: 'https://download-cf.jetbrains.com/ruby/RubyMine-2018.3.tar.gz'
     extractedDirectoryName: 'RubyMine-2018.3'
     displayedName: 'RubyMine'
   webstorm:
+    ensure: latest
+    package: webstorm
     url: 'https://download-cf.jetbrains.com/webstorm/WebStorm-2018.3.1.tar.gz'
     extractedDirectoryName: 'WebStorm-183.4588.66'
     displayedName: 'WebStorm'
   intellij:
+    ensure: latest
+    package: intellij-idea-ultimate
     url: 'https://download-cf.jetbrains.com/idea/ideaIU-2018.3.1.tar.gz'
     extractedDirectoryName: 'idea-IU-183.4588.61'
     displayedName: 'IntelliJ IDEA'
   pycharm:
-     url: 'https://download-cf.jetbrains.com/python/pycharm-professional-2018.3.1.tar.gz'
-     extractedDirectoryName: 'pycharm-2018.3.1'
-     displayedName: 'PyCharm'
+    ensure: latest
+    package: pycharm-professional
+    url: 'https://download-cf.jetbrains.com/python/pycharm-professional-2018.3.1.tar.gz'
+    extractedDirectoryName: 'pycharm-2018.3.1'
+    displayedName: 'PyCharm'
   clion:
-     url: 'https://download-cf.jetbrains.com/cpp/CLion-2018.3.1.tar.gz'
-     extractedDirectoryName: 'clion-2018.3.1'
-     displayedName: 'CLion'
+    ensure: latest
+    package: clion
+    url: 'https://download-cf.jetbrains.com/cpp/CLion-2018.3.1.tar.gz'
+    extractedDirectoryName: 'clion-2018.3.1'
+    displayedName: 'CLion'
 ...
 
 
