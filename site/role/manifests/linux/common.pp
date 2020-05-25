@@ -6,4 +6,5 @@ class role::linux::common {
   contain profile::baidupcs
   contain profile::golang
   contain profile::thefuck
+  contain profile::kubectl
 }
