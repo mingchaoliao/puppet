@@ -3,4 +3,5 @@ class role::linux::miami_dev {
   contain profile::miamioh::tns
   contain profile::miamioh::ssh_alias
   contain role::web
+  contain profile::docker::commands
 }

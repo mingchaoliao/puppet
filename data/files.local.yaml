@@ -23,6 +23,9 @@ profile::oracle::instantclient::extractFolderName: 'instantclient_18_3'
 profile::oracle::instantclient::version: '18.3'
 profile::oracle::instantclient::sharedLibVersion: '18.1'
 
+profile::java::url: 'puppet:///files/jdk-8u251-linux-x64.tar.gz'
+profile::java::extractedDirectoryName: 'jdk1.8.0_251'
+
 profile::applications::jetbrains::apps:
   phpstorm:
     url: 'puppet:///files/PhpStorm-2018.3.1.tar.gz'
