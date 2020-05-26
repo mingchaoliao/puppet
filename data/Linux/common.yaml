@@ -29,6 +29,10 @@ profile::application::merged_packages:
     ensure: present
   resolvconf:
     ensure: present
+  # Hardinfo is a lightweight system profiler and benchmark tool designed
+  # for hardware analysis and report generation.
+  hardinfo:
+    ensure: present
 
 profile::docker::commands::cmds:
   php:

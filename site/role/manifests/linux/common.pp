@@ -7,4 +7,5 @@ class role::linux::common {
   contain profile::golang
   contain profile::thefuck
   contain profile::kubectl
+  contain profile::glances
 }

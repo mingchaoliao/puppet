@@ -6,6 +6,9 @@ FORGE
       puppetlabs-stdlib (< 5.0.0, >= 4.13.0)
     camptocamp-openssl (1.10.0)
       puppetlabs-stdlib (< 5.0.0, >= 2.0.0)
+    camptocamp-systemd (2.9.0)
+      puppetlabs-inifile (< 5.0.0, >= 1.6.0)
+      puppetlabs-stdlib (< 7.0.0, >= 4.13.1)
     dcoxall-golang (1.2.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.1.0)
     ghoneycutt-common (1.9.0)
@@ -78,6 +81,7 @@ FORGE
 DEPENDENCIES
   biemond-oradb (= 3.0.18)
   camptocamp-openssl (= 1.10.0)
+  camptocamp-systemd (= 2.9.0)
   dcoxall-golang (= 1.2.0)
   ghoneycutt-ssh (= 3.58.0)
   herculesteam-augeasproviders_sysctl (= 2.2.0)
