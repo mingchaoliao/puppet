@@ -6,4 +6,6 @@ profile::application::merged_packages:
     ensure: 'present'
   network-manager-openconnect-gnome:
     ensure: 'present'
+  fcitx-googlepinyin:
+    ensure: absent
 ...
