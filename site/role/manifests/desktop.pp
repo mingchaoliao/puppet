@@ -7,4 +7,5 @@ class role::desktop {
   contain profile::applications::jetbrains
   contain profile::minikube
   contain profile::applications::postman
+  contain profile::applications::telegram
 }

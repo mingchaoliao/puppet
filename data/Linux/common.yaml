@@ -33,6 +33,8 @@ profile::application::merged_packages:
   # for hardware analysis and report generation.
   hardinfo:
     ensure: present
+  jq: # a command-line JSON pretty print tool
+    ensure: present
 
 profile::docker::commands::cmds:
   php:

@@ -1,6 +1,6 @@
 define profile::applications::desktop::ubuntu::unity::launcher (
   String $ensure              = 'present',
-  String $desktopFileDirecoty = '/usr/share/applications',
+  String $desktopFileDirecoty = '/tmp',
   String $desktopFileName     = $title,
   String $displayedName       = '',
   String $comment             = 'no comment',
@@ -18,11 +18,27 @@ define profile::applications::desktop::ubuntu::unity::launcher (
     type     => $type
   }
 
-  file { "${desktopFileDirecoty}/${desktopFileName}.desktop":
+  $desktopFileTitle = "Ubuntu Desktop File: ${desktopFileName}.desktop"
+
+  file { $desktopFileTitle:
+    path => "${desktopFileDirecoty}/${desktopFileName}.desktop",
     ensure  => $ensure ? {
       absent  => 'absent',
       default => 'file'
     },
     content => template('profile/applications/desktop/ubuntu/unity/desktop.erb')
+  }
+
+  if $ensure == 'absent' {
+    file {"Remove Desktop File: ${desktopFileName}.desktop":
+      path => "/usr/share/applications/${desktopFileName}.desktop",
+      ensure => absent,
+      require => File[$desktopFileTitle]
+    }
+  } else {
+    exec {"/usr/bin/desktop-file-install ${desktopFileDirecoty}/${desktopFileName}.desktop":
+      require => File[$desktopFileTitle],
+      creates => "/usr/share/applications/${desktopFileName}.desktop"
+    }
   }
 }
