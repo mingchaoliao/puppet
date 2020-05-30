@@ -8,4 +8,4 @@ if [[ $1 ]]; then
   SCRIPT="-e \"$1\""
 fi
 
-sudo bash -l -c "cd $DIR && puppet apply --hiera_config=hiera.yaml --modulepath=site:modules $SCRIPT"
+sudo bash -l -c "cd $DIR && puppet apply --disable_warnings=deprecations --hiera_config=hiera.yaml --modulepath=site:modules $SCRIPT"
