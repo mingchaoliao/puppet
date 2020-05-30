@@ -8,4 +8,5 @@ class role::linux::common {
   contain profile::thefuck
   contain profile::kubectl
   contain profile::glances
+  contain profile::system::drop_page_cache
 }
