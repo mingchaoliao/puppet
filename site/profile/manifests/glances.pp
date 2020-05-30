@@ -1,18 +1,28 @@
 class profile::glances (
   $ensure = 'present'
 ) {
-  package {'python-pip':
+  package {['python-pip', 'build-essential', 'python-dev']:
     ensure => present
   }
 
-  package {'glances[all]':
-    ensure => $ensure,
-    provider => pip,
-    require => Package['python-pip']
+  if $ensure == 'absent' {
+    exec {'glances':
+      command => '/usr/bin/pip uninstall -y glances[all]',
+      onlyif => '/usr/bin/which glances',
+      require => Package[['python-pip', 'build-essential', 'python-dev']]
+    }
+  } else {
+    exec {'glances':
+      command => '/usr/bin/pip install glances[all]',
+      creates => '/usr/local/bin/glances',
+      require => Package[['python-pip', 'build-essential', 'python-dev']]
+    }
   }
 
   file {'/etc/glances':
-    ensure => $ensure == 'absent' ? {true => 'absent', default => 'directory'}
+    ensure => $ensure == 'absent' ? {true => 'absent', default => 'directory'},
+    force => true,
+    recurse => true
   }
   ->file {'/etc/glances/glances.conf':
     ensure => $ensure,
@@ -20,10 +30,11 @@ class profile::glances (
   }
 
   systemd::unit_file { 'glances.service':
+    ensure => $ensure,
     content => file('profile/applications/glances/glances-web.service'),
-    require => [Package['glances[all]'], File['/etc/glances/glances.conf']]
+    require => [Exec['glances'], File['/etc/glances/glances.conf']]
   }
   ~> service {'glances':
-    ensure => 'running',
+    ensure => $ensure ? {absent => stopped, default => running},
   }
 }

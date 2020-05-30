@@ -8,4 +8,5 @@ class role::desktop {
   contain profile::minikube
   contain profile::applications::postman
   contain profile::applications::telegram
+  contain profile::applications::vmware_workstation
 }
