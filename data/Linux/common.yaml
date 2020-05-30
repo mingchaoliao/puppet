@@ -39,107 +39,107 @@ profile::application::merged_packages:
 profile::docker::commands::cmds:
   php:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: php
   composer:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: composer
   php-cs-fixer:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: php-cs-fixer
   phpstan:
     image: miamioh/php
-    tag: 7.3-phpstan
+    imageTag: 7.3-phpstan
     cmd: php-cs-fixer
   phpunit:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: phpunit
 
   php71:
     image: miamioh/php
-    tag: 7.1-phpstorm
+    imageTag: 7.1-phpstorm
     cmd: php
   composer71:
     image: miamioh/php
-    tag: 7.1-phpstorm
+    imageTag: 7.1-phpstorm
     cmd: composer
   php-cs-fixer71:
     image: miamioh/php
-    tag: 7.1-phpstorm
+    imageTag: 7.1-phpstorm
     cmd: php-cs-fixer
   phpstan71:
     image: miamioh/php
-    tag: 7.1-phpstan
+    imageTag: 7.1-phpstan
     cmd: php-cs-fixer
   phpunit71:
     image: miamioh/php
-    tag: 7.1-phpstorm
+    imageTag: 7.1-phpstorm
     cmd: phpunit
 
   php72:
     image: miamioh/php
-    tag: 7.2-phpstorm
+    imageTag: 7.2-phpstorm
     cmd: php
   composer72:
     image: miamioh/php
-    tag: 7.2-phpstorm
+    imageTag: 7.2-phpstorm
     cmd: composer
   php-cs-fixer72:
     image: miamioh/php
-    tag: 7.2-phpstorm
+    imageTag: 7.2-phpstorm
     cmd: php-cs-fixer
   phpstan72:
     image: miamioh/php
-    tag: 7.2-phpstan
+    imageTag: 7.2-phpstan
     cmd: php-cs-fixer
   phpunit72:
     image: miamioh/php
-    tag: 7.2-phpstorm
+    imageTag: 7.2-phpstorm
     cmd: phpunit
 
   php73:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: php
   composer73:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: composer
   php-cs-fixer73:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: php-cs-fixer
   phpstan73:
     image: miamioh/php
-    tag: 7.3-phpstan
+    imageTag: 7.3-phpstan
     cmd: php-cs-fixer
   phpunit73:
     image: miamioh/php
-    tag: 7.3-phpstorm
+    imageTag: 7.3-phpstorm
     cmd: phpunit
 
   php74:
     image: miamioh/php
-    tag: 7.4-phpstorm
+    imageTag: 7.4-phpstorm
     cmd: php
   composer74:
     image: miamioh/php
-    tag: 7.4-phpstorm
+    imageTag: 7.4-phpstorm
     cmd: composer
   php-cs-fixer74:
     image: miamioh/php
-    tag: 7.4-phpstorm
+    imageTag: 7.4-phpstorm
     cmd: php-cs-fixer
   phpstan74:
     image: miamioh/php
-    tag: 7.4-phpstan
+    imageTag: 7.4-phpstan
     cmd: php-cs-fixer
   phpunit74:
     image: miamioh/php
-    tag: 7.4-phpstorm
+    imageTag: 7.4-phpstorm
     cmd: phpunit
 
 profile::docker::docker_compose_version: '1.23.2'
