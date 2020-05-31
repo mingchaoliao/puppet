@@ -3,7 +3,17 @@ class profile::java (
   $url,
   $extractedDirectoryName
 ) {
+  if $ensure == 'absent' {
+    file{"/opt/$extractedDirectoryName":
+      ensure => absent,
+      force => true,
+      recurse => true,
+      purge => true
+    }
+  }
+
   archive { "/tmp/puppet/java.tar.gz":
+    ensure => $ensure,
     source       => $url,
     extract      => true,
     extract_path => '/opt',

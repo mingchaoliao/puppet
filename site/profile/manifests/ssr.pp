@@ -9,7 +9,7 @@ class profile::ssr(
   -> package {['libsodium18', 'libsodium-dev']:
     ensure => $ensure
   }
-  ->package {'ssr':
+  ->package {'electron-ssr':
     provider => 'dpkg',
     ensure => $ensure,
     source => '/tmp/puppet/ssr.deb'
