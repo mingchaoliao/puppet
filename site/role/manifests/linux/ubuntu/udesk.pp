@@ -8,4 +8,25 @@ class role::linux::ubuntu::udesk {
   #   user => 'liaom',
   #   require => [Class[profile::baidupcs]]
   # }
+
+  file {'/opt/nginx':
+    ensure => 'directory'
+  }
+  -> file {'/opt/nginx/default.conf':
+    ensure => 'file',
+    content => file('profile/udeck/nginx.conf')
+  }
+  -> exec {'grep liaom /etc/shadow > /opt/nginx/.htpasswd':
+    path => '/bin',
+    creates => '/opt/nginx/.htpasswd',
+    require => User['liaom']
+  }
+  -> systemd::unit_file { 'nginx.service':
+    ensure => 'present',
+    content => file('profile/udeck/nginx.service'),
+    require => Class['profile::docker']
+  }
+  ~> service {'nginx':
+    ensure => running,
+  }
 }
