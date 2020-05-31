@@ -4,5 +4,5 @@ Description=Nginx
 [Service]
 Type=simple
 User=root
-ExecStart=docker run --rm -it -p 80:80 -v "/opt/nginx/default.conf:/etc/nginx/conf.d/default.conf" -v "/opt/nginx/.htpasswd:/etc/nginx/.htpasswd" nginx:alpine
+ExecStart=/usr/bin/docker run -p 80:80 -v "/usr/share/nginx:/usr/share/nginx/html" -v "/opt/nginx/default.conf:/etc/nginx/conf.d/default.conf" -v "/opt/nginx/.htpasswd:/etc/nginx/.htpasswd" nginx:alpine
 Restart=on-failure

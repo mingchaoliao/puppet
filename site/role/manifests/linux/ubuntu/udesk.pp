@@ -21,6 +21,14 @@ class role::linux::ubuntu::udesk {
     creates => '/opt/nginx/.htpasswd',
     require => User['liaom']
   }
+  -> file {'/opt/nginx/.htpasswd':
+    ensure => file,
+    mode => '0600'
+  }
+  -> file {'/usr/share/nginx':
+    ensure => directory,
+    mode => '0777'
+  }
   -> systemd::unit_file { 'nginx.service':
     ensure => 'present',
     content => file('profile/udeck/nginx.service'),
