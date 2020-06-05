@@ -3,7 +3,7 @@ define profile::docker::command(
   $commandName   = $title,
   $image,
   $imageTag    = 'latest',
-  $cmd
+  $cmd = ''
 ) {
   file {"/opt/docker_cmds/${commandName}":
     ensure => $ensure,

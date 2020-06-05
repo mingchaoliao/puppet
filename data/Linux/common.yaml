@@ -37,6 +37,18 @@ profile::application::merged_packages:
     ensure: present
 
 profile::docker::commands::cmds:
+  terraform:
+    image: "hashicorp/terraform"
+    imageTag: "full"
+  aws-iam-authenticator:
+    image: "lendingworks/aws-iam-authenticator"
+    imageTag: "v0.5.0-alpine-3.7"
+  aws:
+    ensure: absent
+    image: amazon/aws-cli
+  pandoc:
+    image: pandoc/latex
+    cmd: pandoc
   php:
     image: miamioh/php
     imageTag: 7.3-phpstorm
