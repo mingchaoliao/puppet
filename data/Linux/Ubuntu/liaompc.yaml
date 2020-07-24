@@ -24,6 +24,8 @@ profile::application::merged_packages:
     ensure: present
   shutter:
     ensure: present
+  kcachegrind:
+    ensure: present
 
 profile::apache::http::vhosts:
   localhost_9080:

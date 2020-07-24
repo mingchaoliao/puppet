@@ -38,6 +38,7 @@ profile::application::merged_packages:
 
 profile::docker::commands::cmds:
   terraform:
+    ensure: absent
     image: "hashicorp/terraform"
     imageTag: "full"
   aws-iam-authenticator:
@@ -64,7 +65,7 @@ profile::docker::commands::cmds:
   phpstan:
     image: miamioh/php
     imageTag: 7.3-phpstan
-    cmd: php-cs-fixer
+    cmd: phpstan
   phpunit:
     image: miamioh/php
     imageTag: 7.3-phpstorm
@@ -85,7 +86,7 @@ profile::docker::commands::cmds:
   phpstan71:
     image: miamioh/php
     imageTag: 7.1-phpstan
-    cmd: php-cs-fixer
+    cmd: phpstan
   phpunit71:
     image: miamioh/php
     imageTag: 7.1-phpstorm
@@ -106,7 +107,7 @@ profile::docker::commands::cmds:
   phpstan72:
     image: miamioh/php
     imageTag: 7.2-phpstan
-    cmd: php-cs-fixer
+    cmd: phpstan
   phpunit72:
     image: miamioh/php
     imageTag: 7.2-phpstorm
@@ -127,7 +128,7 @@ profile::docker::commands::cmds:
   phpstan73:
     image: miamioh/php
     imageTag: 7.3-phpstan
-    cmd: php-cs-fixer
+    cmd: phpstan
   phpunit73:
     image: miamioh/php
     imageTag: 7.3-phpstorm
@@ -148,7 +149,7 @@ profile::docker::commands::cmds:
   phpstan74:
     image: miamioh/php
     imageTag: 7.4-phpstan
-    cmd: php-cs-fixer
+    cmd: phpstan
   phpunit74:
     image: miamioh/php
     imageTag: 7.4-phpstorm
@@ -234,6 +235,9 @@ profile::applications::jetbrains::apps:
     url: 'https://download-cf.jetbrains.com/cpp/CLion-2018.3.1.tar.gz'
     extractedDirectoryName: 'clion-2018.3.1'
     displayedName: 'CLion'
+  goland:
+    ensure: latest
+    package: goland
 ...
 
 
