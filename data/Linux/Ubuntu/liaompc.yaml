@@ -4,19 +4,6 @@ classes:
   - role::linux::ubuntu::desktop
   - role::linux::miami_dev
 
-profile::php::oci8: true
-profile::php::extensions:
-  oci8:
-    provider: pecl
-  xdebug:
-    zend: true
-    settings:
-      xdebug.remote_enable: 1
-      xdebug.idekey: 'phpstorm-xdebug'
-      xdebug.profiler_enable: 0
-      xdebug.profiler_enable_trigger: 1
-      xdebug.profiler_output_dir: '/tmp/xdebug_profiles/web'
-
 profile::application::merged_packages:
   guake:
     ensure: present
@@ -26,29 +13,4 @@ profile::application::merged_packages:
     ensure: present
   kcachegrind:
     ensure: present
-
-profile::apache::http::vhosts:
-  localhost_9080:
-    servername: 'localhost'
-    ip: 127.0.0.1
-    port: '9080'
-    override: 'All'
-    docroot: '/var/www/localhost'
-    docroot_owner: 'www-data'
-    docroot_group: 'www-data'
-    redirect_status: 'permanent'
-    rewrite_rule: '(.*) https://localhost:9443 [R,L]'
-    redirect_dest: 'https://localhost:9443'
-  localhost_9443:
-    servername: 'localhost'
-    ip: 127.0.0.1
-    port: '9443'
-    override: 'All'
-    docroot: '/var/www/localhost'
-    docroot_owner: 'www-data'
-    docroot_group: 'www-data'
-    rewrite_rule: '(.*) https://localhost:9443 [R,L]'
-    ssl: true
-    ssl_cert: '/opt/ssl/self_signed.crt'
-    ssl_key: '/opt/ssl/self_signed.key'
 ...
