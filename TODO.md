@@ -2,3 +2,5 @@
 1. change login screen background
 1. change desktop background
 1. change the launcher bar to the bottom
+1. show seconds on the clock (top bar)
+
