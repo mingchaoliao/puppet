@@ -1,0 +1,7 @@
+[Unit]
+Description=Keep Mousing Moving
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/keep-mouse-moving
+Restart=on-failure

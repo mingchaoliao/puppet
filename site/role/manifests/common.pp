@@ -1,6 +1,6 @@
 class role::common {
-  contain git
-  contain profile::user
-  contain profile::java
-  contain profile::applications::onepassword_cli
+  contain profile::system::user
+  contain profile::applications
+  contain profile::oracle::java
+  contain profile::sogoupinyin
 }

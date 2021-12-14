@@ -1,16 +1,35 @@
-version: '3.2'
-
 services:
-  udesk:
-    image: ubuntu:16.04
-    hostname: udesk
-    working_dir: /puppet
-    command: /sbin/init
-    cap_add:
-      - CAP_SYS_ADMIN
-    tmpfs:
-      - /tmp
-      - /run
+  puppet:
+    image: puppet/puppetserver
+    hostname: puppet
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - .:/puppet
+      - .:/etc/puppetlabs/code/environments/production
+      - puppetserver-config:/etc/puppetlabs/puppet/
+      - puppetserver-data:/opt/puppetlabs/server/data/puppetserver/
+      - ./config/puppetserver/files:/opt/puppet/files
+      - ./config/puppetserver/fileserver.conf:/etc/puppetlabs/puppet/fileserver.conf
+    working_dir: /etc/puppetlabs/code/environments/production
+    ports:
+      - 8140:8140
+      - 8170:8170
+  puppetdb:
+    image: puppet/puppetdb
+    volumes:
+      - puppetdb:/opt/puppetlabs/server/data/puppetdb
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: puppetdb
+      POSTGRES_USER: puppetdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  foreman:
+    image: foreman/foreman:nightly
+    ports:
+      - 8443:8443
+    hostname: foreman.local
+volumes:
+  pgdata: {}
+  puppetdb: {}
+  puppetserver-config: {}
+  puppetserver-data: {}
