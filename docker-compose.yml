@@ -23,11 +23,6 @@ services:
       POSTGRES_USER: puppetdb
     volumes:
       - pgdata:/var/lib/postgresql/data
-  foreman:
-    image: foreman/foreman:nightly
-    ports:
-      - 8443:8443
-    hostname: foreman.local
 volumes:
   pgdata: {}
   puppetdb: {}

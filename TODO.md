@@ -3,4 +3,5 @@
 1. change desktop background
 1. change the launcher bar to the bottom
 1. show seconds on the clock (top bar)
-
+1. fix bug: dcvpn_split_tunnel requires dependency net-tools
+1. rclone
