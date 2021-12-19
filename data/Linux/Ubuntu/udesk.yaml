@@ -1,0 +1,5 @@
+---
+classes:
+  - role::desktop
+  - role::linux::desktop
+...
