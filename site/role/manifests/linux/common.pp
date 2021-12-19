@@ -3,6 +3,7 @@ class role::linux::common {
   contain profile::docker
   contain profile::system::drop_page_cache
   contain profile::system::ssh
+  contain profile::rclone
 
   package {[
     'cifs-utils',
@@ -13,5 +14,7 @@ class role::linux::common {
     'iftop',
     'resolvconf',
     'hardinfo',
+    'rar',
+    'net-tools'
   ]: }
 }

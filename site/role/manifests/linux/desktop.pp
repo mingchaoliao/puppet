@@ -6,4 +6,8 @@ class role::linux::desktop {
     'thunderbird',
     'kcachegrind',
   ]: }
+
+  package {'vlc':
+    provider => snap
+  }
 }
