@@ -2,6 +2,7 @@
 classes:
   - role::desktop
   - role::linux::desktop
+  - role::dev_server
 
 profile::system::ssh::merged_pwd_enabled_users:
   - liaom
