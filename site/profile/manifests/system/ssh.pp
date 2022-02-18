@@ -1,25 +1,24 @@
 class profile::system::ssh(
   $pwd_enabled_users = lookup('profile::system::ssh::merged_pwd_enabled_users', Array, 'deep', [])
 ) {
-  if $pwd_enabled_users.length {
-    class { '::ssh':
-      server_options => {
-        "Match User ${join($pwd_enabled_users, ',')}" => {
-          'PasswordAuthentication' => 'yes',
-        },
-        'PermitRootLogin' => 'no',
-        'PasswordAuthentication' => 'no',
-        'PermitEmptyPasswords' => 'no',
+  $options = {
+    'PermitRootLogin' => 'no',
+    'PasswordAuthentication' => 'no',
+    'PermitEmptyPasswords' => 'no',
+  }
+
+  if $pwd_enabled_users.length != 0 {
+    $user = {
+      "Match User ${join($pwd_enabled_users, ',')}" => {
+        'PasswordAuthentication' => 'yes',
       },
     }
   } else {
-    class { '::ssh':
-      server_options => {
-        'PermitRootLogin' => 'no',
-        'PasswordAuthentication' => 'no',
-        'PermitEmptyPasswords' => 'no',
-      },
-    }
+    $user = {}
+  }
+
+  class { '::ssh':
+    server_options => merge($options, $user)
   }
 
   contain '::ssh'
