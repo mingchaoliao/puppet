@@ -11,5 +11,6 @@ class role::dev_server {
     'rpm2cpio',
     'ldap-utils',
     'jq',
+    'shc', # shell script compiler
   ]:}
 }

@@ -4,7 +4,6 @@ class role::dev_desktop {
   contain profile::jetbrains
   contain profile::oracle::sqldeveloper
   contain profile::oracle::virtualbox
-  contain profile::cisco::anyconnect
 
   package {'code':
     provider => snap
