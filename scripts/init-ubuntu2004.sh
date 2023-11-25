@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-apt-get update && apt-get install -y wget
+apt-get update && apt-get install -y wget rclone
 
 cd /tmp || exit 1
 
