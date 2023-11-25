@@ -10,14 +10,14 @@ class profile::bash_profile(
 
   $users.each |String $username, Hash $user| {
     if($user['ensure'] != 'absent') {
-      file { "bashrc_${username}":
+      file { "${user['home']}/.bashrc":
         ensure => 'file',
       }
     }
 
     file_line { "bash_profile_${username}":
       ensure => $user['ensure'],
-      path   => "/home/${username}/.bashrc",
+      path   => "${user['home']}/.bashrc",
       line   => "source /opt/bash-profile/main",
     }
   }

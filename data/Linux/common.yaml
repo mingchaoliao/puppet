@@ -5,6 +5,8 @@ classes:
 profile::bash_profile::merged_users:
   liaom:
     ensure: present
+    home: /home/liaom
   root:
     ensure: present
+    home: /root
 ...

@@ -12,6 +12,7 @@ profile::bash_profile::merged_users:
     ensure: absent
   sysadm:
     ensure: present
+    home: '/home/sysadm'
 
 profile::system::user::merged_users:
   liaom:
