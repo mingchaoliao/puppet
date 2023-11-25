@@ -6,3 +6,5 @@
 1. fix bug: dcvpn_split_tunnel requires dependency net-tools
 1. wake on lan (ethtool)
 1. xrdp
+1. install boot-repair
+1. install diffuse http://diffuse.sourceforge.net/ (see also: https://askubuntu.com/questions/1235271/pygtk-not-available-on-focal-fossa-20-04)
