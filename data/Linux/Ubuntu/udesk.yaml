@@ -1,9 +1,25 @@
 ---
 classes:
-  - role::desktop
+  - role::linux::ubuntu::udesk
+  - profile::docker
   - role::linux::desktop
-  - role::dev_server
 
-profile::system::ssh::merged_pwd_enabled_users:
-  - liaom
+profile::docker::users:
+  - 'sysadm'
+
+profile::bash_profile::merged_users:
+  liaom:
+    ensure: absent
+  sysadm:
+    ensure: present
+
+profile::system::user::merged_users:
+  liaom:
+    ensure: 'absent'
+  sysadm:
+    ensure: 'present'
+    full_name: 'System Admin'
+    shell: '/bin/bash'
+    public_keys: []
+    sudo: true
 ...

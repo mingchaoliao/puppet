@@ -4,7 +4,7 @@ defaults:
   data_hash: yaml_data
 hierarchy:
   - name: node specific configuration
-    path: "%{facts.kernel}/%{facts.os.name}/%{facts.hostname}.yaml"
+    path: "%{facts.kernel}/%{facts.os.name}/%{facts.networking.hostname}.yaml"
   - name: distribution specific configuration
     path: "%{facts.kernel}/%{facts.os.name}/common.yaml"
   - name: kernal specific configuration

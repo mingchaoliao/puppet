@@ -1,0 +1,29 @@
+FROM ubuntu:20.04
+
+RUN apt-get update
+RUN apt-get install -y wget
+
+WORKDIR /tmp
+
+# Install Puppet 8
+RUN wget https://apt.puppet.com/puppet8-release-focal.deb
+RUN dpkg -i puppet8-release-focal.deb
+RUN apt-get update
+RUN apt-get install -y puppet-agent
+ENV PATH="$PATH:/opt/puppetlabs/bin"
+
+# Install Ruby 2.5.9
+#RUN apt-get install -y software-properties-common
+#RUN apt-add-repository -y ppa:rael-gc/rvm
+#RUN apt-get install -y rvm
+#ENV PATH="$PATH:/usr/share/rvm/bin"
+#RUN rvm install 2.5.9
+#RUN rvm use 2.5.9 --default
+
+# Install g10k
+RUN apt-get install -y unzip git
+RUN wget https://github.com/xorpaul/g10k/releases/download/v0.9.8/g10k-linux-amd64.zip
+RUN unzip g10k-linux-amd64.zip
+RUN mv g10k /usr/local/bin
+
+WORKDIR /puppet

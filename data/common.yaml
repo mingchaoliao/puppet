@@ -6,6 +6,9 @@ git::configs:
   user.name: 'Mingchao Liao'
   user.email: 'mingchaoliao95@gmail.com'
 
+profile::docker::merged_users:
+  - 'liaom'
+
 profile::system::user::merged_users:
   liaom:
     ensure: 'present'
@@ -17,27 +20,4 @@ profile::system::user::merged_users:
         name: 'liaom@UITLIAOMMBP.local'
         key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCv7ABpJ2AavnQRs/u2Fponymdq5tvDAstpZT6sLb50seI9aWJ6XpIrP/2lSf3lDsyA+r/5HTBXBn9+G1VBFVoN4Kbs8j+a0q3IjO1/xNe90X8L3hoc77/rNYCO/NjcpfO38LCA57lyTRhzNM3NkIvdIXkK30Q+qjrxIDM+esNYzdMlDV32lIoVr1UosiT6s9jyzLFc0Zm1PZ3P8LO9jp6ViH0Euqsm61haXe2E40gJOxb/+nEPWdf/WeSbVqKItCxSKUGYTwUH8AamtvZ+NNA2O7FUXx6Qzcc42oQOnp/KXel+VGtpmIP3TL+uHefzP16YhNSxliEGYqbARxq1WV1R'
     sudo: true
-
-
-profile::docker::docker_compose_version: '1.29.2'
-profile::docker::merged_users:
-  - 'liaom'
-
-profile::oit::dcvpn::user: liaom@ohio.edu
-
-profile::jetbrains::merged_apps:
-  phpstorm:
-    ensure: present
-  clion:
-    ensure: present
-  goland:
-    ensure: present
-  intellij-idea-ultimate:
-    ensure: present
-  pycharm-professional:
-    ensure: present
-  rubymine:
-    ensure: present
-  webstorm:
-    ensure: present
 ...

@@ -2,14 +2,9 @@
 classes:
   - role::linux::common
 
-profile::system::sysctl::configs:
-  fs.inotify.max_user_watches:
-    ensure: 'present'
-    value: 524288
-    comment: 'increase inotify for jetbran IDEs'
-
-profile::oracle::java::source: 'puppet:///files/jdk-8u311-linux-x64.tar.gz'
-profile::oracle::java::extractedDirectoryName: 'jdk1.8.0_311'
-
-profile::oracle::sqldeveloper::source: 'puppet:///files/sqldeveloper-21.2.1.204.1703-no-jre.zip'
+profile::bash_profile::merged_users:
+  liaom:
+    ensure: present
+  root:
+    ensure: present
 ...

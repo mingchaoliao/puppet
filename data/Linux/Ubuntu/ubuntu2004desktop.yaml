@@ -1,7 +1,0 @@
----
-classes:
-  - role::dev_desktop
-  - role::desktop
-  - role::linux::desktop
-  - role::oit
-...

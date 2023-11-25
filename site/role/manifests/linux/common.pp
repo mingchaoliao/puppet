@@ -1,20 +1,13 @@
 class role::linux::common {
-  contain profile::glances
-  contain profile::docker
-  contain profile::system::drop_page_cache
   contain profile::system::ssh
-  contain profile::rclone
+  contain profile::bash_profile
 
   package {[
-    'cifs-utils',
-    'ffmpeg',
-    'zerofree',
-    'screen',
+    'guake',
+    'git',
+    'net-tools',
     'iotop',
     'iftop',
-    'resolvconf',
-    'hardinfo',
-    'rar',
-    'net-tools'
+    'screen',
   ]: }
 }

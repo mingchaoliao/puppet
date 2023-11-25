@@ -1,6 +1,6 @@
 class profile::sogoupinyin(
   $ensure = 'present',
-  $source = 'puppet:///files/sogoupinyin_2.4.0.3469_amd64.deb'
+  $source = 'puppet:///files/sogoupinyin_4.2.1.145_amd64.deb'
 ) {
   package {'fcitx-bin':
     ensure => $ensure,

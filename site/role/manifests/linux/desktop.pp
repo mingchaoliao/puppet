@@ -1,13 +1,7 @@
 class role::linux::desktop {
-  contain profile::shutter
-  package{[
-    'gparted',
-    'guake',
-    'thunderbird',
-    'kcachegrind',
-  ]: }
+  contain profile::chrome
 
-  package {'vlc':
-    provider => snap
-  }
+  package {[
+    'gparted',
+  ]: }
 }

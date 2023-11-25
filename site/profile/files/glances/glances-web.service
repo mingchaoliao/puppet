@@ -1,8 +1,0 @@
-[Unit]
-Description=Glances Web Server
-
-[Service]
-Type=simple
-User=root
-ExecStart=/usr/local/bin/glances -w
-Restart=on-failure
