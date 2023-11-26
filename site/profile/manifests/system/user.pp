@@ -46,7 +46,7 @@ class profile::system::user (
           false => "/home/$username/.bashrc",
         }),
         require => $username == 'root' ? {
-          true => nil,
+          true => [],
           false => User[$username],
         },
       }
