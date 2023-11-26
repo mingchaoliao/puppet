@@ -9,7 +9,7 @@ git::configs:
 profile::docker::merged_users:
   - 'liaom'
 
-profile::docker::docker_compose_version: '2.23.3'
+profile::docker::docker_compose_version: 'v2.23.3'
 
 profile::system::user::merged_users:
   liaom:
