@@ -4,10 +4,14 @@ class profile::chrome (
   ::apt::key {'google-linux-key1':
     id => '4CCA1EAF950CEE4AB83976DCA040830F7FAC5991',
     source => 'https://dl.google.com/linux/linux_signing_key.pub',
+    server => 'dl.google.com',
+    options => ''
   }
   ->::apt::key {'google-linux-key2':
     id => 'EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796',
-    source => 'https://dl.google.com/linux/linux_signing_key.pub'
+    source => 'https://dl.google.com/linux/linux_signing_key.pub',
+    server => 'dl.google.com',
+    options => ''
   }
   ->::apt::source {'google-chrome-stable':
     location => 'https://dl.google.com/linux/chrome/deb',

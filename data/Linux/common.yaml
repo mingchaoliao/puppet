@@ -2,11 +2,7 @@
 classes:
   - role::linux::common
 
-profile::bash_profile::merged_users:
-  liaom:
-    ensure: present
-    home: /home/liaom
+profile::system::user::merged_users:
   root:
-    ensure: present
-    home: /root
+    bash_profile: 'present'
 ...

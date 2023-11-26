@@ -14,6 +14,7 @@ profile::system::user::merged_users:
     ensure: 'present'
     full_name: 'Mingchao Liao'
     shell: '/bin/bash'
+    bash_profile: 'present'
     public_keys:
       - ensure: 'present'
         type: ssh-rsa
