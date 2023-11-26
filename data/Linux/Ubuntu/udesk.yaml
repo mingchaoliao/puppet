@@ -7,6 +7,9 @@ classes:
 profile::docker::users:
   - 'sysadm'
 
+profile::system::ssh::merged_pwd_enabled_users:
+  - 'sysadm'
+
 profile::system::user::merged_users:
   liaom:
     ensure: 'absent'
