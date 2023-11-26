@@ -45,7 +45,10 @@ class profile::system::user (
           true  => '/root/.bashrc',
           false => "/home/$username/.bashrc",
         }),
-        require => User[$username],
+        require => $username == 'root' ? {
+          true => nil,
+          false => User[$username],
+        },
       }
       -> file_line { "bash_profile_${username}":
         ensure => 'bash_profile' in $user ? {
